@@ -1,0 +1,250 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D1C6B6E1-B7A2-47A1-8B18-A0F84150748F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>TerraCode</RootNamespace>
+    <AssemblyName>TerraCode</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\DatabaseConnectionString.cs" />
+    <Compile Include="Common\ResultadoOperacao.cs" />
+    <Compile Include="Common\ResultadoOperacaoComConteudo.cs" />
+    <Compile Include="dbTerraCodeDataSet.cs">
+      <DependentUpon>dbTerraCodeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="dbTerraCodeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dbTerraCodeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Model\Caixa.cs" />
+    <Compile Include="Model\Fazenda.cs" />
+    <Compile Include="Model\Motorista.cs" />
+    <Compile Include="Model\MovimentacaoCaixas.cs" />
+    <Compile Include="Model\PL.cs" />
+    <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Model\Veiculo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\CaixaRepository.cs" />
+    <Compile Include="Repository\FazendaRepository.cs" />
+    <Compile Include="Repository\MotoristaRepository.cs" />
+    <Compile Include="Repository\MovimentacaoCaixasRepository.cs" />
+    <Compile Include="Repository\PLRepository.cs" />
+    <Compile Include="Repository\UsuarioRepository.cs" />
+    <Compile Include="Repository\VeiculoRepository.cs" />
+    <Compile Include="Service\CaixaService.cs" />
+    <Compile Include="Service\FazendaService.cs" />
+    <Compile Include="Service\MotoristaService.cs" />
+    <Compile Include="Service\MovimentacaoCaixasService.cs" />
+    <Compile Include="Service\PasswordService.cs" />
+    <Compile Include="Service\PLService.cs" />
+    <Compile Include="Service\UsuarioService.cs" />
+    <Compile Include="Service\VeiculoService.cs" />
+    <Compile Include="View\ScreenCaixas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenCaixas.Designer.cs">
+      <DependentUpon>ScreenCaixas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenCriarFazendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenCriarFazendas.Designer.cs">
+      <DependentUpon>ScreenCriarFazendas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenCriarMotorista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenCriarMotorista.Designer.cs">
+      <DependentUpon>ScreenCriarMotorista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenCriarPL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenCriarPL.Designer.cs">
+      <DependentUpon>ScreenCriarPL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenCriarVeiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenCriarVeiculos.Designer.cs">
+      <DependentUpon>ScreenCriarVeiculos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenFazendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenFazendas.Designer.cs">
+      <DependentUpon>ScreenFazendas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\MenuGeral.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\MenuGeral.Designer.cs">
+      <DependentUpon>MenuGeral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenCriarUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenCriarUsuarios.Designer.cs">
+      <DependentUpon>ScreenCriarUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenMotorista.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenMotorista.Designer.cs">
+      <DependentUpon>ScreenMotorista.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenPls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenPls.Designer.cs">
+      <DependentUpon>ScreenPls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenRegistrarCaixas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenRegistrarCaixas.Designer.cs">
+      <DependentUpon>ScreenRegistrarCaixas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenUsuarios.Designer.cs">
+      <DependentUpon>ScreenUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScreenVeiculos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\ScreenVeiculos.Designer.cs">
+      <DependentUpon>ScreenVeiculos.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="View\ScreenCaixas.resx">
+      <DependentUpon>ScreenCaixas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenCriarFazendas.resx">
+      <DependentUpon>ScreenCriarFazendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenCriarMotorista.resx">
+      <DependentUpon>ScreenCriarMotorista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenCriarPL.resx">
+      <DependentUpon>ScreenCriarPL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenCriarVeiculos.resx">
+      <DependentUpon>ScreenCriarVeiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenFazendas.resx">
+      <DependentUpon>ScreenFazendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\MenuGeral.resx">
+      <DependentUpon>MenuGeral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenCriarUsuarios.resx">
+      <DependentUpon>ScreenCriarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenMotorista.resx">
+      <DependentUpon>ScreenMotorista.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenPls.resx">
+      <DependentUpon>ScreenPls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenRegistrarCaixas.resx">
+      <DependentUpon>ScreenRegistrarCaixas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenUsuarios.resx">
+      <DependentUpon>ScreenUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\ScreenVeiculos.resx">
+      <DependentUpon>ScreenVeiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="dbTerraCodeDataSet.xsc">
+      <DependentUpon>dbTerraCodeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="dbTerraCodeDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dbTerraCodeDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="dbTerraCodeDataSet.xss">
+      <DependentUpon>dbTerraCodeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="Assets\TerraCode_LogoSemFundo.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
