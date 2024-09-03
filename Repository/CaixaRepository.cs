@@ -1,5 +1,6 @@
 ﻿using System.Data.SqlClient;
 using System;
+using TerraCode.Model;
 
 namespace TerraCode.Repository
 {
@@ -10,13 +11,43 @@ namespace TerraCode.Repository
         {
             connectionString = DatabaseConnectionString.ConnectionString;
         }
+
+        public int RetornaTotalDeCaixas()
+        {
+            try
+            {
+                string query = "SELECT QuantidadeCaixas FROM Caixas WHERE Id = 1";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    connection.Open();
+                    var resultado = command.ExecuteScalar();
+                    if (resultado != null)
+                    {
+                        return Convert.ToInt32(resultado);
+                    }
+                    return 0;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Erro ao obter estoque disponível: " + ex.Message);
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro geral ao obter estoque disponível: " + ex.Message);
+                return 0;
+            }
+        }
         public bool AtualizarQuantidadeCaixas(int quantidadeAlteracao)
         {
             try
             {
                 string selectQuery = "SELECT COUNT(*) FROM Caixas WHERE Id = 1";
                 string insertQuery = "INSERT INTO Caixas (Id, QuantidadeCaixas) VALUES (1, 0)";
-                string updateQuery = "UPDATE Caixas SET QuantidadeCaixas = QuantidadeCaixas + @QuantidadeAlteracao WHERE Id = 1";
+                string updateQuery = "UPDATE Caixas SET QuantidadeCaixas = QuantidadeCaixas + (@QuantidadeAlteracao) WHERE Id = 1";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {

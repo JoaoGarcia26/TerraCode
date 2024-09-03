@@ -2,15 +2,18 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using TerraCode.Service;
 
 namespace TerraCode.View
 {
     public partial class ScreenCaixas : Form
     {
         private ScreenRegistrarCaixas _formRegistrarCaixas;
+        private CaixaService _caixaService;
         public ScreenCaixas()
         {
             InitializeComponent();
+            _caixaService = new CaixaService(); 
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -93,6 +96,9 @@ namespace TerraCode.View
             dataGridViewMovimentacaoCaixas.Columns["Observações"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dataGridViewMovimentacaoCaixas.Refresh();
+
+            lblQtdCaixas.Text = $"Quantidade de caixas total: {_caixaService.RetornaTotalDeCaixas().Conteudo}";
+            lblQtdCaixas.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
         }
     }
 }

@@ -11,6 +11,7 @@ namespace TerraCode.View
         private FazendaService _fazendaService;
         private PLService _plService;
         private MovimentacaoCaixasService _movimentacaoCaixasService;
+        private CaixaService _caixaService;
         public ScreenRegistrarCaixas()
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace TerraCode.View
             _plService = new PLService();
             _fazendaService = new FazendaService();
             _movimentacaoCaixasService = new MovimentacaoCaixasService();
+            _caixaService = new CaixaService();
         }
 
         private void ScreenRegistrarCaixas_Load(object sender, EventArgs e)
@@ -39,6 +41,8 @@ namespace TerraCode.View
                 comboFazOrigem.Items.Add(item.Nome);
                 comboFazDestino.Items.Add(item.Nome);
             }
+
+            lblQtdCaixas.Text = $"Quantidade de caixas total: {_caixaService.RetornaTotalDeCaixas().Conteudo}";
         }
 
         private void comboFazDestino_SelectedIndexChanged(object sender, EventArgs e)

@@ -48,6 +48,7 @@
             this.veiculoTableAdapter = new TerraCode.dbTerraCodeDataSetTableAdapters.VeiculoTableAdapter();
             this.motoristaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.motoristaTableAdapter = new TerraCode.dbTerraCodeDataSetTableAdapters.MotoristaTableAdapter();
+            this.lblQtdCaixas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimentacaoCaixas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTerraCodeDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fazendasBindingSource)).BeginInit();
@@ -163,11 +164,22 @@
             // 
             this.motoristaTableAdapter.ClearBeforeFill = true;
             // 
+            // lblQtdCaixas
+            // 
+            this.lblQtdCaixas.AutoSize = true;
+            this.lblQtdCaixas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdCaixas.Location = new System.Drawing.Point(396, 390);
+            this.lblQtdCaixas.Name = "lblQtdCaixas";
+            this.lblQtdCaixas.Size = new System.Drawing.Size(212, 20);
+            this.lblQtdCaixas.TabIndex = 9;
+            this.lblQtdCaixas.Text = "Quantidade total de caixas:";
+            // 
             // ScreenCaixas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1047, 450);
+            this.Controls.Add(this.lblQtdCaixas);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.dataGridViewMovimentacaoCaixas);
             this.Controls.Add(this.btnRegMovimentacao);
@@ -187,6 +199,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.veiculoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.motoristaBindingSource)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -209,5 +222,6 @@
         private dbTerraCodeDataSetTableAdapters.VeiculoTableAdapter veiculoTableAdapter;
         private System.Windows.Forms.BindingSource motoristaBindingSource;
         private dbTerraCodeDataSetTableAdapters.MotoristaTableAdapter motoristaTableAdapter;
+        private System.Windows.Forms.Label lblQtdCaixas;
     }
 }

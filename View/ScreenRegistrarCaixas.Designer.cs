@@ -47,6 +47,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.comboPL = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
+            this.lblQtdCaixas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtQtdCaixas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,6 +134,11 @@
             // 
             this.txtQtdCaixas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtQtdCaixas.Location = new System.Drawing.Point(34, 48);
+            this.txtQtdCaixas.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
             this.txtQtdCaixas.Name = "txtQtdCaixas";
             this.txtQtdCaixas.Size = new System.Drawing.Size(245, 27);
             this.txtQtdCaixas.TabIndex = 52;
@@ -227,11 +233,22 @@
             this.label8.TabIndex = 60;
             this.label8.Text = "PL:";
             // 
+            // lblQtdCaixas
+            // 
+            this.lblQtdCaixas.AutoSize = true;
+            this.lblQtdCaixas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQtdCaixas.Location = new System.Drawing.Point(193, 296);
+            this.lblQtdCaixas.Name = "lblQtdCaixas";
+            this.lblQtdCaixas.Size = new System.Drawing.Size(212, 20);
+            this.lblQtdCaixas.TabIndex = 62;
+            this.lblQtdCaixas.Text = "Quantidade de caixas total:";
+            // 
             // ScreenRegistrarCaixas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 351);
+            this.Controls.Add(this.lblQtdCaixas);
             this.Controls.Add(this.comboPL);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.comboStatus);
@@ -281,5 +298,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox comboPL;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label lblQtdCaixas;
     }
 }

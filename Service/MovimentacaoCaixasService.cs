@@ -54,6 +54,7 @@ namespace TerraCode.Service
             MovimentacaoCaixas objMovimentacaoCaixas = new MovimentacaoCaixas()
             {
                 CaixaId = 1,
+                QuantidadeCaixas = qtdCaixas,
                 DataMovimentacao = DateTime.Now,
                 TipoMovimentacao = "Saída",
                 FazendaDestino = fazendaDestinoResultado.Conteudo,
@@ -67,9 +68,8 @@ namespace TerraCode.Service
                 Observacoes = observacoes
             };
 
-            var resultadoCaixa = _caixaService.RegistrarCaixas(qtdCaixas, "Saida");
+            var resultadoCaixa = _caixaService.RegistrarCaixas(qtdCaixas, "Saída");
             
-
             if (resultadoCaixa.Sucesso)
             {
                 bool resultadoMovimentacao = _movimentacaoCaixasRepository.RegistrarMovimentacao(objMovimentacaoCaixas);
@@ -79,7 +79,7 @@ namespace TerraCode.Service
                 }
                 return new ResultadoOperacao() { Sucesso = false, MensagemErro = "Estoque insuficiente para completar a operação." };
             } 
-            return new ResultadoOperacao() { Sucesso = false, MensagemErro = "Erro ao salvar movimentação" };
+            return new ResultadoOperacao() { Sucesso = false, MensagemErro = resultadoCaixa.MensagemErro };
         }
 
         public ResultadoOperacao RegistrarEntradaMovimentacaoCaixas(int qtdCaixas, string nomeDestino, string nomeOrigem, string nomeMotorista, string pl, string placaVeiculo, string observacoes)
