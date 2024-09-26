@@ -22,3 +22,8 @@ C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Screen
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.ScreenVeiculos.resources
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.ScreenCaixas.resources
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.ScreenRegistrarCaixas.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.ScreenAlhoDaRoca.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.AlhoDaRoca.ScreenRegistrarEntrada.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Classificacao.ScreenRegistrarClassificacao.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Classificacao.ScreenPreClassificacao.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Estoque.ScreenEstoque.resources

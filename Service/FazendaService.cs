@@ -63,5 +63,16 @@ namespace TerraCode.Service
                 Conteudo = fazenda 
             };
         }
+
+        public ResultadoOperacaoComConteudo<Fazenda> RetornaFazendaPeloId(int id)
+        {
+            Fazenda fazenda = _fazendaRepository.GetFazendaById(id);
+            return new ResultadoOperacaoComConteudo<Fazenda>
+            {
+                Sucesso = true,
+                MensagemErro = "Ok",
+                Conteudo = fazenda
+            };
+        }
     }
 }

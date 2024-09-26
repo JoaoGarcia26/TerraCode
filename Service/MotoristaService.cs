@@ -66,5 +66,17 @@ namespace TerraCode.Service
                 Conteudo = motorista
             };
         }
+
+        public ResultadoOperacaoComConteudo<Motorista> RetornaMotoristaPeloId(int id)
+        {
+            var motorista = _motoristaRepository.GetMotoristaById(id);
+
+            return new ResultadoOperacaoComConteudo<Motorista>()
+            {
+                Sucesso = true,
+                MensagemErro = "Ok",
+                Conteudo = motorista
+            };
+        }
     }
 }

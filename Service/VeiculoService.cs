@@ -58,6 +58,16 @@ namespace TerraCode.Service
                 Conteudo = veiculo
             };
         }
+        public ResultadoOperacaoComConteudo<Veiculo> RetornaVeiculoPeloId(int id)
+        {
+            Veiculo veiculo = _veiculoRepository.GetVeiculoById(id);
+            return new ResultadoOperacaoComConteudo<Veiculo>()
+            {
+                Sucesso = true,
+                MensagemErro = "Ok",
+                Conteudo = veiculo
+            };
+        }
 
         public ResultadoOperacaoComConteudo<List<Veiculo>> RetornaTodosVeiculosPeloMotorista(string nomeMotorista)
         {
