@@ -63,7 +63,6 @@
             this.btnVeiculos = new System.Windows.Forms.Button();
             this.btnCaixas = new System.Windows.Forms.Button();
             this.btnClassificacao = new System.Windows.Forms.Button();
-            this.btnPosClassificacao = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -294,6 +293,7 @@
             this.btnEstoque.TabIndex = 3;
             this.btnEstoque.Text = "Estoque";
             this.btnEstoque.UseVisualStyleBackColor = true;
+            this.btnEstoque.Click += new System.EventHandler(this.btnEstoque_Click);
             // 
             // btnAlhoRoca
             // 
@@ -354,21 +354,11 @@
             this.btnClassificacao.UseVisualStyleBackColor = true;
             this.btnClassificacao.Click += new System.EventHandler(this.btnClassificacao_Click);
             // 
-            // btnPosClassificacao
-            // 
-            this.btnPosClassificacao.Location = new System.Drawing.Point(186, 357);
-            this.btnPosClassificacao.Name = "btnPosClassificacao";
-            this.btnPosClassificacao.Size = new System.Drawing.Size(164, 55);
-            this.btnPosClassificacao.TabIndex = 11;
-            this.btnPosClassificacao.Text = "Pós-Classificação";
-            this.btnPosClassificacao.UseVisualStyleBackColor = true;
-            // 
             // MenuGeral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.btnPosClassificacao);
             this.Controls.Add(this.btnClassificacao);
             this.Controls.Add(this.btnCaixas);
             this.Controls.Add(this.btnVeiculos);
@@ -428,6 +418,5 @@
         private System.Windows.Forms.ToolStripMenuItem listarVeículosToolStripMenuItem;
         private System.Windows.Forms.Button btnCaixas;
         private System.Windows.Forms.Button btnClassificacao;
-        private System.Windows.Forms.Button btnPosClassificacao;
     }
 }

@@ -27,3 +27,14 @@ C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.AlhoDa
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Classificacao.ScreenRegistrarClassificacao.resources
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Classificacao.ScreenPreClassificacao.resources
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Estoque.ScreenEstoque.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Estoque.ScreenRegistrarEstoque.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.dll
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.WinForms.dll
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.Wpf.dll
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.pdb
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.xml
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.WinForms.pdb
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.WinForms.xml
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.Wpf.pdb
+C:\Users\João Victor\Documents\GitHub\TerraCode\bin\Debug\LiveCharts.Wpf.xml
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.csproj.CopyComplete
