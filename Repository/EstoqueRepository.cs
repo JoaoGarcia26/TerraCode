@@ -157,6 +157,77 @@ namespace TerraCode.Repository
             return estoque;
         }
 
+        public Estoque GetEstoqueByNumDoc(string numDoc)
+        {
+            Estoque estoque = null;
+
+            try
+            {
+                string query = "SELECT * FROM Estoque WHERE DocNr = @NumDoc;";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@NumDoc", numDoc);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            estoque = new Estoque
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                Data = reader.GetDateTime(reader.GetOrdinal("Data")),
+                                Evento = reader.GetString(reader.GetOrdinal("Evento")),
+                                DocNr = reader.GetString(reader.GetOrdinal("DocNr")),
+                                Extra8 = reader.GetInt32(reader.GetOrdinal("Extra8")),
+                                Cat8 = reader.GetInt32(reader.GetOrdinal("Cat8")),
+                                Especial8 = reader.GetInt32(reader.GetOrdinal("Especial8")),
+                                Escovado8 = reader.GetInt32(reader.GetOrdinal("Escovado8")),
+                                Comercial8 = reader.GetInt32(reader.GetOrdinal("Comercial8")),
+                                Extra7 = reader.GetInt32(reader.GetOrdinal("Extra7")),
+                                Cat7 = reader.GetInt32(reader.GetOrdinal("Cat7")),
+                                Especial7 = reader.GetInt32(reader.GetOrdinal("Especial7")),
+                                Escovado7 = reader.GetInt32(reader.GetOrdinal("Escovado7")),
+                                Comercial7 = reader.GetInt32(reader.GetOrdinal("Comercial7")),
+                                Extra6 = reader.GetInt32(reader.GetOrdinal("Extra6")),
+                                Cat6 = reader.GetInt32(reader.GetOrdinal("Cat6")),
+                                Especial6 = reader.GetInt32(reader.GetOrdinal("Especial6")),
+                                Escovado6 = reader.GetInt32(reader.GetOrdinal("Escovado6")),
+                                Comercial6 = reader.GetInt32(reader.GetOrdinal("Comercial6")),
+                                Extra5 = reader.GetInt32(reader.GetOrdinal("Extra5")),
+                                Cat5 = reader.GetInt32(reader.GetOrdinal("Cat5")),
+                                Especial5 = reader.GetInt32(reader.GetOrdinal("Especial5")),
+                                Escovado5 = reader.GetInt32(reader.GetOrdinal("Escovado5")),
+                                Comercial5 = reader.GetInt32(reader.GetOrdinal("Comercial5")),
+                                Extra4 = reader.GetInt32(reader.GetOrdinal("Extra4")),
+                                Cat4 = reader.GetInt32(reader.GetOrdinal("Cat4")),
+                                Especial4 = reader.GetInt32(reader.GetOrdinal("Especial4")),
+                                Escovado4 = reader.GetInt32(reader.GetOrdinal("Escovado4")),
+                                Comercial4 = reader.GetInt32(reader.GetOrdinal("Comercial4")),
+                                Escovado3 = reader.GetInt32(reader.GetOrdinal("Escovado3")),
+                                Borrado20kg = reader.GetInt32(reader.GetOrdinal("Borrado20kg")),
+                                Escovado2_3 = reader.GetInt32(reader.GetOrdinal("Escovado2_3")),
+                                Industrial20kg = reader.GetInt32(reader.GetOrdinal("Industrial20kg")),
+                                Dente20kg = reader.GetInt32(reader.GetOrdinal("Dente20kg"))
+                            };
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Erro de SQL: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro geral: " + ex.Message);
+            }
+            return estoque;
+        }
+
         public List<Estoque> GetAllEstoques()
         {
             List<Estoque> estoques = new List<Estoque>();
@@ -323,6 +394,86 @@ namespace TerraCode.Repository
                 Console.WriteLine("Erro geral: " + ex.Message);
                 return false;
             }
+        }
+
+        public List<Estoque> RetornaEstoquesFiltrado(DateTime? dataInicial, DateTime? dataFinal, string evento, string documento)
+        {
+            List<Estoque> estoques = new List<Estoque>();
+
+            try
+            {
+                string query = @"
+                    SELECT * FROM Estoque
+                    WHERE (@DataInicial IS NULL OR CAST(Data AS DATE) >= CAST(@DataInicial AS DATE))
+                    AND (@DataFinal IS NULL OR CAST(Data AS DATE) <= CAST(@DataFinal AS DATE))
+                    AND (@Evento IS NULL OR Evento LIKE '%' + @Evento + '%')
+                    AND (@Documento IS NULL OR DocNr LIKE '%' + @Documento + '%')";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@DataInicial", (object)dataInicial ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@DataFinal", (object)dataFinal ?? DBNull.Value);
+                    command.Parameters.AddWithValue("@Evento", string.IsNullOrEmpty(evento) ? (object)DBNull.Value : evento);
+                    command.Parameters.AddWithValue("@Documento", string.IsNullOrEmpty(documento) ? (object)DBNull.Value : documento);
+
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Estoque estoque = new Estoque
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                Data = reader.GetDateTime(reader.GetOrdinal("Data")),
+                                Evento = reader.GetString(reader.GetOrdinal("Evento")),
+                                DocNr = reader.GetString(reader.GetOrdinal("DocNr")),
+                                Extra8 = reader.GetInt32(reader.GetOrdinal("Extra8")),
+                                Cat8 = reader.GetInt32(reader.GetOrdinal("Cat8")),
+                                Especial8 = reader.GetInt32(reader.GetOrdinal("Especial8")),
+                                Escovado8 = reader.GetInt32(reader.GetOrdinal("Escovado8")),
+                                Comercial8 = reader.GetInt32(reader.GetOrdinal("Comercial8")),
+                                Extra7 = reader.GetInt32(reader.GetOrdinal("Extra7")),
+                                Cat7 = reader.GetInt32(reader.GetOrdinal("Cat7")),
+                                Especial7 = reader.GetInt32(reader.GetOrdinal("Especial7")),
+                                Escovado7 = reader.GetInt32(reader.GetOrdinal("Escovado7")),
+                                Comercial7 = reader.GetInt32(reader.GetOrdinal("Comercial7")),
+                                Extra6 = reader.GetInt32(reader.GetOrdinal("Extra6")),
+                                Cat6 = reader.GetInt32(reader.GetOrdinal("Cat6")),
+                                Especial6 = reader.GetInt32(reader.GetOrdinal("Especial6")),
+                                Escovado6 = reader.GetInt32(reader.GetOrdinal("Escovado6")),
+                                Comercial6 = reader.GetInt32(reader.GetOrdinal("Comercial6")),
+                                Extra5 = reader.GetInt32(reader.GetOrdinal("Extra5")),
+                                Cat5 = reader.GetInt32(reader.GetOrdinal("Cat5")),
+                                Especial5 = reader.GetInt32(reader.GetOrdinal("Especial5")),
+                                Escovado5 = reader.GetInt32(reader.GetOrdinal("Escovado5")),
+                                Comercial5 = reader.GetInt32(reader.GetOrdinal("Comercial5")),
+                                Extra4 = reader.GetInt32(reader.GetOrdinal("Extra4")),
+                                Cat4 = reader.GetInt32(reader.GetOrdinal("Cat4")),
+                                Especial4 = reader.GetInt32(reader.GetOrdinal("Especial4")),
+                                Escovado4 = reader.GetInt32(reader.GetOrdinal("Escovado4")),
+                                Comercial4 = reader.GetInt32(reader.GetOrdinal("Comercial4")),
+                                Escovado3 = reader.GetInt32(reader.GetOrdinal("Escovado3")),
+                                Borrado20kg = reader.GetInt32(reader.GetOrdinal("Borrado20kg")),
+                                Escovado2_3 = reader.GetInt32(reader.GetOrdinal("Escovado2_3")),
+                                Industrial20kg = reader.GetInt32(reader.GetOrdinal("Industrial20kg")),
+                                Dente20kg = reader.GetInt32(reader.GetOrdinal("Dente20kg"))
+                            };
+                            estoques.Add(estoque);
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Erro de SQL: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro geral: " + ex.Message);
+            }
+
+            return estoques;
         }
 
         public bool DeleteEstoque(int id)

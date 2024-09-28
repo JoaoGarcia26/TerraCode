@@ -99,5 +99,10 @@ namespace TerraCode.View.Classificacao
             }
             _formRegistrarClassificacao.ShowDialog();
         }
+
+        private void ScreenPreClassificacao_Activated(object sender, EventArgs e)
+        {
+            ScreenClassificacao_Load(sender, e);
+        }
     }
 }

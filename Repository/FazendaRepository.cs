@@ -14,18 +14,19 @@ namespace TerraCode.Repository
             connectionString = DatabaseConnectionString.ConnectionString;
         }
 
-        public bool CreateFazenda(string nome, string localizacao, float Hectare)
+        public bool CreateFazenda(string nome, string localizacao, float hectare, bool isBarracao)
         {
             try
             {
-                string query = "INSERT INTO Fazendas (Nome, Localizacao, Hectare) VALUES (@Nome, @Localizacao, @Hectare)";
+                string query = "INSERT INTO Fazendas (Nome, Localizacao, Hectare, IsBarracao) VALUES (@Nome, @Localizacao, @Hectare, @IsBarracao)";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     SqlCommand command = new SqlCommand(query, connection);
                     command.Parameters.AddWithValue("@Nome", nome);
                     command.Parameters.AddWithValue("@Localizacao", localizacao);
-                    command.Parameters.AddWithValue("@Hectare", Hectare);
+                    command.Parameters.AddWithValue("@Hectare", hectare);
+                    command.Parameters.AddWithValue("@IsBarracao", isBarracao);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -68,8 +69,9 @@ namespace TerraCode.Repository
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Nome = reader.GetString(reader.GetOrdinal("Nome")),
                                 Localizacao = reader.GetString(reader.GetOrdinal("Localizacao")),
-                                Hectare = Convert.ToSingle(reader.GetValue(reader.GetOrdinal("Hectare")))
-                        };
+                                Hectare = Convert.ToSingle(reader.GetValue(reader.GetOrdinal("Hectare"))),
+                                IsBarracao = reader.GetBoolean(reader.GetOrdinal("IsBarracao"))
+                            };
                         }
                     }
                 }
@@ -109,7 +111,8 @@ namespace TerraCode.Repository
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Nome = reader.GetString(reader.GetOrdinal("Nome")),
                                 Localizacao = reader.GetString(reader.GetOrdinal("Localizacao")),
-                                Hectare = Convert.ToSingle(reader.GetValue(reader.GetOrdinal("Hectare")))
+                                Hectare = Convert.ToSingle(reader.GetValue(reader.GetOrdinal("Hectare"))),
+                                IsBarracao = reader.GetBoolean(reader.GetOrdinal("IsBarracao"))
                             };
                         }
                     }
@@ -132,7 +135,7 @@ namespace TerraCode.Repository
 
             try
             {
-                string query = "SELECT * FROM Fazendas;";
+                string query = "SELECT * FROM Fazendas WHERE IsBarracao = 0;";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -149,8 +152,9 @@ namespace TerraCode.Repository
                                 Id = reader.GetInt32(reader.GetOrdinal("Id")),
                                 Nome = reader.GetString(reader.GetOrdinal("Nome")),
                                 Localizacao = reader.GetString(reader.GetOrdinal("Localizacao")),
-                                Hectare = Convert.ToSingle(reader.GetValue(reader.GetOrdinal("Hectare")))
-                        };
+                                Hectare = Convert.ToSingle(reader.GetValue(reader.GetOrdinal("Hectare"))),
+                                IsBarracao = reader.GetBoolean(reader.GetOrdinal("IsBarracao"))
+                            };
 
                             fazendas.Add(fazenda);
                         }
@@ -168,11 +172,11 @@ namespace TerraCode.Repository
             return fazendas;
         }
 
-        public bool UpdateFazenda(int id, string nome, string localizacao, float Hectare)
+        public bool UpdateFazenda(int id, string nome, string localizacao, float hectare, bool isBarracao)
         {
             try
             {
-                string query = "UPDATE Fazendas SET Nome = @Nome, Localizacao = @Localizacao, Hectare = @Hectare WHERE Id = @Id";
+                string query = "UPDATE Fazendas SET Nome = @Nome, Localizacao = @Localizacao, Hectare = @Hectare, IsBarracao = @IsBarracao WHERE Id = @Id";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -180,7 +184,8 @@ namespace TerraCode.Repository
                     command.Parameters.AddWithValue("@Id", id);
                     command.Parameters.AddWithValue("@Nome", nome);
                     command.Parameters.AddWithValue("@Localizacao", localizacao);
-                    command.Parameters.AddWithValue("@Hectare", Hectare);
+                    command.Parameters.AddWithValue("@Hectare", hectare);
+                    command.Parameters.AddWithValue("@IsBarracao", isBarracao);
 
                     connection.Open();
                     command.ExecuteNonQuery();
@@ -225,6 +230,49 @@ namespace TerraCode.Repository
                 Console.WriteLine("Erro geral: " + ex.Message);
                 return false;
             }
+        }
+
+        public List<Fazenda> GetSomenteBarracoes()
+        {
+            List<Fazenda> barracoes = new List<Fazenda>();
+
+            try
+            {
+                string query = "SELECT * FROM Fazendas WHERE IsBarracao = 1;";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    SqlCommand command = new SqlCommand(query, connection);
+
+                    connection.Open();
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Fazenda fazenda = new Fazenda
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Nome = reader.GetString(reader.GetOrdinal("Nome")),
+                                Localizacao = reader.GetString(reader.GetOrdinal("Localizacao")),
+                                Hectare = Convert.ToSingle(reader.GetValue(reader.GetOrdinal("Hectare"))),
+                                IsBarracao = reader.GetBoolean(reader.GetOrdinal("IsBarracao"))
+                            };
+
+                            barracoes.Add(fazenda);
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine("Erro de SQL: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Erro geral: " + ex.Message);
+            }
+            return barracoes;
         }
     }
 }

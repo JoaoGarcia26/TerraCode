@@ -48,7 +48,6 @@
             this.veiculoTableAdapter = new TerraCode.dbTerraCodeDataSetTableAdapters.VeiculoTableAdapter();
             this.motoristaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.motoristaTableAdapter = new TerraCode.dbTerraCodeDataSetTableAdapters.MotoristaTableAdapter();
-            this.lblQtdCaixas = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimentacaoCaixas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTerraCodeDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fazendasBindingSource)).BeginInit();
@@ -63,7 +62,7 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(49, 375);
+            this.btnVoltar.Location = new System.Drawing.Point(49, 366);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(114, 52);
             this.btnVoltar.TabIndex = 1;
@@ -87,11 +86,11 @@
             // 
             // btnRegMovimentacao
             // 
-            this.btnRegMovimentacao.Location = new System.Drawing.Point(884, 375);
+            this.btnRegMovimentacao.Location = new System.Drawing.Point(884, 366);
             this.btnRegMovimentacao.Name = "btnRegMovimentacao";
             this.btnRegMovimentacao.Size = new System.Drawing.Size(114, 52);
             this.btnRegMovimentacao.TabIndex = 2;
-            this.btnRegMovimentacao.Text = "Registrar Movimentação";
+            this.btnRegMovimentacao.Text = "Registrar Saída";
             this.btnRegMovimentacao.UseVisualStyleBackColor = true;
             this.btnRegMovimentacao.Click += new System.EventHandler(this.btnRegMovimentacao_Click);
             // 
@@ -164,29 +163,19 @@
             // 
             this.motoristaTableAdapter.ClearBeforeFill = true;
             // 
-            // lblQtdCaixas
-            // 
-            this.lblQtdCaixas.AutoSize = true;
-            this.lblQtdCaixas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdCaixas.Location = new System.Drawing.Point(396, 390);
-            this.lblQtdCaixas.Name = "lblQtdCaixas";
-            this.lblQtdCaixas.Size = new System.Drawing.Size(212, 20);
-            this.lblQtdCaixas.TabIndex = 9;
-            this.lblQtdCaixas.Text = "Quantidade total de caixas:";
-            // 
             // ScreenCaixas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 450);
-            this.Controls.Add(this.lblQtdCaixas);
+            this.ClientSize = new System.Drawing.Size(1047, 435);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.dataGridViewMovimentacaoCaixas);
             this.Controls.Add(this.btnRegMovimentacao);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScreenCaixas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Caixas - Registro de Movimentações | TerraCode";
+            this.Text = "Caixas | Registro de Movimentações | TerraCode";
+            this.Activated += new System.EventHandler(this.ScreenCaixas_Activated);
             this.Load += new System.EventHandler(this.ScreenCaixas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewMovimentacaoCaixas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTerraCodeDataSet)).EndInit();
@@ -199,7 +188,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.veiculoBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.motoristaBindingSource)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -222,6 +210,5 @@
         private dbTerraCodeDataSetTableAdapters.VeiculoTableAdapter veiculoTableAdapter;
         private System.Windows.Forms.BindingSource motoristaBindingSource;
         private dbTerraCodeDataSetTableAdapters.MotoristaTableAdapter motoristaTableAdapter;
-        private System.Windows.Forms.Label lblQtdCaixas;
     }
 }

@@ -10,6 +10,7 @@ namespace TerraCode.View.AlhoDaRoca
         private FazendaService _fazendaService;
         private PLService _plService;
         private MovimentacaoProducaoRocaService _movimentacaoProducaoRocaService;
+        private MovimentacaoCaixasService _movimentacaoCaixasService;
 
         public ScreenRegistrarEntrada()
         {
@@ -19,14 +20,15 @@ namespace TerraCode.View.AlhoDaRoca
             _plService = new PLService();
             _veiculoService = new VeiculoService();
             _movimentacaoProducaoRocaService = new MovimentacaoProducaoRocaService();
+            _movimentacaoCaixasService = new MovimentacaoCaixasService();
             CarregaFormularios();
         }
-
 
         public void CarregaFormularios()
         {
             comboFazenda.Items.Clear();
             comboMotorista.Items.Clear();
+            comboBarracao.Items.Clear();
             comboPL.Items.Clear();
             comboVeiculos.Items.Clear();
             txtPesoTotal.Text = "0";
@@ -34,6 +36,7 @@ namespace TerraCode.View.AlhoDaRoca
 
             var resultFazendas = _fazendaService.RetornaTodasFazendas();
             var resultMotorista = _motoristaService.RetornaTodosMotoristas();
+            var resultBarracoes = _fazendaService.RetornaSomenteBarracoes();
             
             if (resultFazendas.Sucesso)
             {
@@ -55,6 +58,18 @@ namespace TerraCode.View.AlhoDaRoca
             } else
             {
                 MessageBox.Show(resultMotorista.MensagemErro, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (resultBarracoes.Sucesso)
+            {
+                foreach (var item in resultBarracoes.Conteudo)
+                {
+                    comboBarracao.Items.Add(item.Nome);
+                }
+            }
+            else
+            {
+                MessageBox.Show(resultFazendas.MensagemErro, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -103,10 +118,11 @@ namespace TerraCode.View.AlhoDaRoca
             var pl = _plService.RetornaPlPeloIDeFazenda(int.Parse(comboPL.SelectedItem.ToString()), fazenda.Conteudo.Nome);
 
             var resultadoMovimentacao = _movimentacaoProducaoRocaService.CriarMovimentacao(motorista.Conteudo.Id, veiculo.Conteudo.Id, fazenda.Conteudo.Id
-                , pl.Conteudo.Id, float.Parse(txtPesoTotal.Text), int.Parse(txtQtdCaixas.Value.ToString()), pickerDataEntrada.Value);
+                , pl.Conteudo.Id, float.Parse(txtPesoTotal.Text), int.Parse(txtQtdCaixas.Value.ToString()), dataEntrada.Value);
 
             if (resultadoMovimentacao.Sucesso)
             {
+                _movimentacaoCaixasService.RegistrarEntradaMovimentacaoCaixas(dataEntrada.Value, int.Parse(txtQtdCaixas.Value.ToString()), comboBarracao.SelectedItem.ToString(), comboFazenda.SelectedItem.ToString(), comboMotorista.SelectedItem.ToString(), comboVeiculos.SelectedItem.ToString(), null);
                 MessageBox.Show("Movimentação cadastrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             } else
             {

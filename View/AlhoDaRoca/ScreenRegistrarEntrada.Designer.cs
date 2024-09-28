@@ -40,10 +40,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.pickerDataEntrada = new System.Windows.Forms.DateTimePicker();
+            this.dataEntrada = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPesoTotal = new System.Windows.Forms.TextBox();
+            this.comboBarracao = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtQtdCaixas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             this.comboPL.FormattingEnabled = true;
             this.comboPL.Location = new System.Drawing.Point(22, 152);
             this.comboPL.Name = "comboPL";
-            this.comboPL.Size = new System.Drawing.Size(245, 28);
+            this.comboPL.Size = new System.Drawing.Size(70, 28);
             this.comboPL.TabIndex = 78;
             // 
             // label8
@@ -159,15 +161,15 @@
             this.label1.TabIndex = 65;
             this.label1.Text = "Quantidade de Caixas:";
             // 
-            // pickerDataEntrada
+            // dataEntrada
             // 
-            this.pickerDataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pickerDataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.pickerDataEntrada.Location = new System.Drawing.Point(22, 41);
-            this.pickerDataEntrada.Name = "pickerDataEntrada";
-            this.pickerDataEntrada.Size = new System.Drawing.Size(244, 27);
-            this.pickerDataEntrada.TabIndex = 79;
-            this.pickerDataEntrada.Value = new System.DateTime(2024, 9, 23, 11, 24, 10, 0);
+            this.dataEntrada.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataEntrada.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dataEntrada.Location = new System.Drawing.Point(22, 41);
+            this.dataEntrada.Name = "dataEntrada";
+            this.dataEntrada.Size = new System.Drawing.Size(244, 27);
+            this.dataEntrada.TabIndex = 79;
+            this.dataEntrada.Value = new System.DateTime(2024, 9, 23, 11, 24, 10, 0);
             // 
             // label4
             // 
@@ -197,11 +199,32 @@
             this.txtPesoTotal.Size = new System.Drawing.Size(244, 27);
             this.txtPesoTotal.TabIndex = 82;
             // 
+            // comboBarracao
+            // 
+            this.comboBarracao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBarracao.FormattingEnabled = true;
+            this.comboBarracao.Location = new System.Drawing.Point(116, 152);
+            this.comboBarracao.Name = "comboBarracao";
+            this.comboBarracao.Size = new System.Drawing.Size(150, 28);
+            this.comboBarracao.TabIndex = 84;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(116, 132);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(150, 17);
+            this.label7.TabIndex = 83;
+            this.label7.Text = "Barracão de Entrada:";
+            // 
             // ScreenRegistrarEntrada
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(622, 264);
+            this.Controls.Add(this.comboBarracao);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.txtPesoTotal);
             this.Controls.Add(this.comboVeiculos);
             this.Controls.Add(this.btnRegistrar);
@@ -211,7 +234,7 @@
             this.Controls.Add(this.comboFazenda);
             this.Controls.Add(this.comboPL);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.pickerDataEntrada);
+            this.Controls.Add(this.dataEntrada);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label4);
@@ -239,9 +262,11 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker pickerDataEntrada;
+        private System.Windows.Forms.DateTimePicker dataEntrada;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPesoTotal;
+        private System.Windows.Forms.ComboBox comboBarracao;
+        private System.Windows.Forms.Label label7;
     }
 }

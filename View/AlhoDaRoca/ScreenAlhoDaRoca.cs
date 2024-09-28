@@ -85,5 +85,10 @@ namespace TerraCode.View
         {
             this.Dispose();
         }
+
+        private void ScreenAlhoDaRoca_Activated(object sender, EventArgs e)
+        {
+            ScreenAlhoDaRoca_Load(sender, e);
+        }
     }
 }

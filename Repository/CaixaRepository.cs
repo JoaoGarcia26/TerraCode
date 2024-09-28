@@ -7,78 +7,104 @@ namespace TerraCode.Repository
     public class CaixaRepository
     {
         private string connectionString;
+
         public CaixaRepository()
         {
             connectionString = DatabaseConnectionString.ConnectionString;
         }
 
-        public int RetornaTotalDeCaixas()
+        public bool DiminuirCaixas(int fazendaId, int quantidade)
         {
             try
             {
-                string query = "SELECT QuantidadeCaixas FROM Caixas WHERE Id = 1";
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
+                    string query = @"
+                        UPDATE Fazendas
+                        SET CaixasDisponiveis = CaixasDisponiveis - @quantidade
+                        WHERE Id = @fazendaId AND CaixasDisponiveis >= @quantidade";
+
                     SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@fazendaId", fazendaId);
+                    command.Parameters.AddWithValue("@quantidade", quantidade);
 
                     connection.Open();
-                    var resultado = command.ExecuteScalar();
-                    if (resultado != null)
-                    {
-                        return Convert.ToInt32(resultado);
-                    }
-                    return 0;
-                }
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine("Erro ao obter estoque disponível: " + ex.Message);
-                return 0;
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Erro geral ao obter estoque disponível: " + ex.Message);
-                return 0;
-            }
-        }
-        public bool AtualizarQuantidadeCaixas(int quantidadeAlteracao)
-        {
-            try
-            {
-                string selectQuery = "SELECT COUNT(*) FROM Caixas WHERE Id = 1";
-                string insertQuery = "INSERT INTO Caixas (Id, QuantidadeCaixas) VALUES (1, 0)";
-                string updateQuery = "UPDATE Caixas SET QuantidadeCaixas = QuantidadeCaixas + (@QuantidadeAlteracao) WHERE Id = 1";
-
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    SqlCommand command = new SqlCommand(selectQuery, connection);
-                    connection.Open();
-
-                    int count = (int)command.ExecuteScalar();
-
-                    if (count == 0)
-                    {
-                        command = new SqlCommand(insertQuery, connection);
-                        command.ExecuteNonQuery();
-                    }
-
-                    command = new SqlCommand(updateQuery, connection);
-                    command.Parameters.AddWithValue("@QuantidadeAlteracao", quantidadeAlteracao);
-
                     int rowsAffected = command.ExecuteNonQuery();
-
                     return rowsAffected > 0;
                 }
             }
             catch (SqlException ex)
             {
-                Console.WriteLine("Erro de SQL: " + ex.Message);
+                Console.WriteLine($"Erro SQL ao diminuir caixas: {ex.Message}");
                 return false;
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Erro geral: " + ex.Message);
+                Console.WriteLine($"Erro geral ao diminuir caixas: {ex.Message}");
                 return false;
+            }
+        }
+
+        public bool AumentarCaixas(int fazendaId, int quantidade)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = @"
+                        UPDATE Fazendas
+                        SET CaixasDisponiveis = CaixasDisponiveis + @quantidade
+                        WHERE Id = @fazendaId";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@fazendaId", fazendaId);
+                    command.Parameters.AddWithValue("@quantidade", quantidade);
+
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Erro SQL ao aumentar caixas: {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro geral ao aumentar caixas: {ex.Message}");
+                return false;
+            }
+        }
+
+        public int ObterCaixasDisponiveis(int fazendaId)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    string query = @"
+                        SELECT CaixasDisponiveis
+                        FROM Fazendas
+                        WHERE Id = @fazendaId";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@fazendaId", fazendaId);
+
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : 0;
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"Erro SQL ao obter caixas disponíveis: {ex.Message}");
+                return 0;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Erro geral ao obter caixas disponíveis: {ex.Message}");
+                return 0;
             }
         }
     }

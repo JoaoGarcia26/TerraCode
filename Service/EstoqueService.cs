@@ -116,6 +116,17 @@ namespace TerraCode.Service
             };
         }
 
+        public ResultadoOperacaoComConteudo<List<Estoque>> RetornaEstoqueFiltrado(DateTime? dataInicial = null, DateTime? dataFinal = null, string evento = null, string documento = null)
+        {
+            List<Estoque> estoques = _estoqueRepository.RetornaEstoquesFiltrado(dataInicial, dataFinal, evento, documento);
+            return new ResultadoOperacaoComConteudo<List<Estoque>>
+            {
+                Sucesso = true,
+                MensagemErro = "OK",
+                Conteudo = estoques
+            };
+        }
+
         public ResultadoOperacaoComConteudo<Dictionary<string, int>> GetEstoqueGeral()
         {
             var todosEstoques = _estoqueRepository.GetAllEstoques();
@@ -203,6 +214,17 @@ namespace TerraCode.Service
         public ResultadoOperacaoComConteudo<Estoque> RetornaEstoquePorID(int id)
         {
             Estoque estoque = _estoqueRepository.GetEstoqueById(id);
+            return new ResultadoOperacaoComConteudo<Estoque>
+            {
+                Sucesso = true,
+                MensagemErro = "Ok",
+                Conteudo = estoque
+            };
+        }
+
+        public ResultadoOperacaoComConteudo<Estoque> RetornaEstoquePorNumDoc(string numDoc)
+        {
+            Estoque estoque = _estoqueRepository.GetEstoqueByNumDoc(numDoc);
             return new ResultadoOperacaoComConteudo<Estoque>
             {
                 Sucesso = true,

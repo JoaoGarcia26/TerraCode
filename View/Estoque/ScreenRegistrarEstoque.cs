@@ -151,7 +151,7 @@ namespace TerraCode.View.Estoque
                 };
             }
 
-            var resultado = _estoqueService.CriarEstoque(dataEntrada.Value, txtNumDoc.Text, txtNumDoc.Text, classificacoesPorTipo);
+            var resultado = _estoqueService.CriarEstoque(dataEntrada.Value, comboEvento.SelectedItem.ToString(), txtNumDoc.Text, classificacoesPorTipo);
 
             if (resultado.Sucesso)
             {

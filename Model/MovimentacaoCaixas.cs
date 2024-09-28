@@ -5,7 +5,6 @@ namespace TerraCode.Model
     public class MovimentacaoCaixas
     {
         public int Id { get; set; }
-        public int CaixaId { get; set; }
         public int QuantidadeCaixas { get; set; }
 
         public DateTime DataMovimentacao { get; set; }

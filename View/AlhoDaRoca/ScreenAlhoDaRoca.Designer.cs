@@ -81,6 +81,7 @@
             this.Name = "ScreenAlhoDaRoca";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registro de entrada | TerraCode";
+            this.Activated += new System.EventHandler(this.ScreenAlhoDaRoca_Activated);
             this.Load += new System.EventHandler(this.ScreenAlhoDaRoca_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);

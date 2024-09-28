@@ -9,5 +9,6 @@ namespace TerraCode.Model
         public string Localizacao { get; set; }
         public double Hectare { get; set; }
         public List<PL> PLs { get; set; }
+        public bool IsBarracao { get; set; }
     }
 }

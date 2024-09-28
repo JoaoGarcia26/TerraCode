@@ -36,12 +36,7 @@
     <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
       <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
     </Reference>
-    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <HintPath>packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
-    </Reference>
-    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
-      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
-    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -49,6 +44,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Messaging" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -136,6 +132,18 @@
     </Compile>
     <Compile Include="View\Classificacao\ScreenRegistrarClassificacao.Designer.cs">
       <DependentUpon>ScreenRegistrarClassificacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Estoque\Movimentacoes\ScreenEditarMovimentacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Estoque\Movimentacoes\ScreenEditarMovimentacao.Designer.cs">
+      <DependentUpon>ScreenEditarMovimentacao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Estoque\Movimentacoes\ScreenMovimentacoesEstoque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Estoque\Movimentacoes\ScreenMovimentacoesEstoque.Designer.cs">
+      <DependentUpon>ScreenMovimentacoesEstoque.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Estoque\ScreenEstoque.cs">
       <SubType>Form</SubType>
@@ -251,6 +259,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Classificacao\ScreenRegistrarClassificacao.resx">
       <DependentUpon>ScreenRegistrarClassificacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Estoque\Movimentacoes\ScreenEditarMovimentacao.resx">
+      <DependentUpon>ScreenEditarMovimentacao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Estoque\Movimentacoes\ScreenMovimentacoesEstoque.resx">
+      <DependentUpon>ScreenMovimentacoesEstoque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Estoque\ScreenEstoque.resx">
       <DependentUpon>ScreenEstoque.cs</DependentUpon>

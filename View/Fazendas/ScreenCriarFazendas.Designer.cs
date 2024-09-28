@@ -37,22 +37,23 @@
             this.txtNomeFaz = new System.Windows.Forms.TextBox();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnAddFazenda = new System.Windows.Forms.Button();
+            this.chkIsBarracao = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(46, 156);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(46, 148);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(180, 17);
+            this.label4.Size = new System.Drawing.Size(177, 20);
             this.label4.TabIndex = 25;
             this.label4.Text = "Área Total Plantada (HA):";
             // 
             // txtAreaPlantada
             // 
             this.txtAreaPlantada.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAreaPlantada.Location = new System.Drawing.Point(49, 175);
+            this.txtAreaPlantada.Location = new System.Drawing.Point(49, 170);
             this.txtAreaPlantada.Name = "txtAreaPlantada";
             this.txtAreaPlantada.Size = new System.Drawing.Size(245, 26);
             this.txtAreaPlantada.TabIndex = 3;
@@ -61,27 +62,27 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(46, 95);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(46, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 17);
+            this.label2.Size = new System.Drawing.Size(90, 20);
             this.label2.TabIndex = 24;
             this.label2.Text = "Localização:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(46, 31);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(46, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(135, 17);
+            this.label1.Size = new System.Drawing.Size(132, 20);
             this.label1.TabIndex = 23;
             this.label1.Text = "Nome da Fazenda:";
             // 
             // txtLocalizacao
             // 
             this.txtLocalizacao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLocalizacao.Location = new System.Drawing.Point(49, 114);
+            this.txtLocalizacao.Location = new System.Drawing.Point(49, 108);
             this.txtLocalizacao.Name = "txtLocalizacao";
             this.txtLocalizacao.Size = new System.Drawing.Size(245, 26);
             this.txtLocalizacao.TabIndex = 2;
@@ -96,7 +97,7 @@
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(363, 156);
+            this.btnVoltar.Location = new System.Drawing.Point(363, 170);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(114, 45);
             this.btnVoltar.TabIndex = 5;
@@ -114,11 +115,24 @@
             this.btnAddFazenda.UseVisualStyleBackColor = true;
             this.btnAddFazenda.Click += new System.EventHandler(this.btnAddFazenda_Click);
             // 
+            // chkIsBarracao
+            // 
+            this.chkIsBarracao.AutoSize = true;
+            this.chkIsBarracao.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkIsBarracao.Location = new System.Drawing.Point(49, 209);
+            this.chkIsBarracao.Name = "chkIsBarracao";
+            this.chkIsBarracao.Size = new System.Drawing.Size(134, 24);
+            this.chkIsBarracao.TabIndex = 26;
+            this.chkIsBarracao.Text = "É um barracão?";
+            this.chkIsBarracao.UseVisualStyleBackColor = true;
+            this.chkIsBarracao.CheckedChanged += new System.EventHandler(this.chkIsBarracao_CheckedChanged);
+            // 
             // ScreenCriarFazendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(522, 233);
+            this.ClientSize = new System.Drawing.Size(522, 242);
+            this.Controls.Add(this.chkIsBarracao);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtAreaPlantada);
             this.Controls.Add(this.label2);
@@ -145,5 +159,6 @@
         private System.Windows.Forms.TextBox txtNomeFaz;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnAddFazenda;
+        private System.Windows.Forms.CheckBox chkIsBarracao;
     }
 }

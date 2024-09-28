@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ScreenRegistrarCaixas));
-            this.comboFazOrigem = new System.Windows.Forms.ComboBox();
+            this.comboBarracao = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,20 +43,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnVoltar = new System.Windows.Forms.Button();
             this.btnRegistrar = new System.Windows.Forms.Button();
-            this.comboPL = new System.Windows.Forms.ComboBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.lblQtdCaixas = new System.Windows.Forms.Label();
+            this.dataEnvio = new System.Windows.Forms.DateTimePicker();
+            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtQtdCaixas)).BeginInit();
             this.SuspendLayout();
             // 
-            // comboFazOrigem
+            // comboBarracao
             // 
-            this.comboFazOrigem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboFazOrigem.FormattingEnabled = true;
-            this.comboFazOrigem.Location = new System.Drawing.Point(367, 46);
-            this.comboFazOrigem.Name = "comboFazOrigem";
-            this.comboFazOrigem.Size = new System.Drawing.Size(245, 28);
-            this.comboFazOrigem.TabIndex = 40;
+            this.comboBarracao.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBarracao.FormattingEnabled = true;
+            this.comboBarracao.Location = new System.Drawing.Point(367, 46);
+            this.comboBarracao.Name = "comboBarracao";
+            this.comboBarracao.Size = new System.Drawing.Size(245, 28);
+            this.comboBarracao.TabIndex = 40;
             // 
             // label5
             // 
@@ -64,9 +63,9 @@
             this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(364, 89);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 17);
+            this.label5.Size = new System.Drawing.Size(147, 17);
             this.label5.TabIndex = 50;
-            this.label5.Text = "Local de Destino:";
+            this.label5.Text = "Fazenda de Destino:";
             // 
             // label6
             // 
@@ -74,15 +73,15 @@
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(364, 26);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(123, 17);
+            this.label6.Size = new System.Drawing.Size(148, 17);
             this.label6.TabIndex = 49;
-            this.label6.Text = "Local de Origem:";
+            this.label6.Text = "Barracão de Origem:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(30, 151);
+            this.label4.Location = new System.Drawing.Point(31, 153);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 17);
             this.label4.TabIndex = 48;
@@ -91,11 +90,11 @@
             // txtObservacoes
             // 
             this.txtObservacoes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtObservacoes.Location = new System.Drawing.Point(33, 170);
+            this.txtObservacoes.Location = new System.Drawing.Point(33, 175);
             this.txtObservacoes.MaxLength = 250;
             this.txtObservacoes.Multiline = true;
             this.txtObservacoes.Name = "txtObservacoes";
-            this.txtObservacoes.Size = new System.Drawing.Size(245, 88);
+            this.txtObservacoes.Size = new System.Drawing.Size(245, 83);
             this.txtObservacoes.TabIndex = 43;
             // 
             // label2
@@ -126,7 +125,6 @@
             this.comboFazDestino.Name = "comboFazDestino";
             this.comboFazDestino.Size = new System.Drawing.Size(245, 28);
             this.comboFazDestino.TabIndex = 51;
-            this.comboFazDestino.SelectedIndexChanged += new System.EventHandler(this.comboFazDestino_SelectedIndexChanged);
             // 
             // txtQtdCaixas
             // 
@@ -186,47 +184,36 @@
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(114, 62);
             this.btnRegistrar.TabIndex = 57;
-            this.btnRegistrar.Text = "Registrar";
+            this.btnRegistrar.Text = "Registrar Envio";
             this.btnRegistrar.UseVisualStyleBackColor = true;
             this.btnRegistrar.Click += new System.EventHandler(this.btnRegistrar_Click);
             // 
-            // comboPL
+            // dataEnvio
             // 
-            this.comboPL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboPL.FormattingEnabled = true;
-            this.comboPL.Location = new System.Drawing.Point(33, 111);
-            this.comboPL.Name = "comboPL";
-            this.comboPL.Size = new System.Drawing.Size(245, 28);
-            this.comboPL.TabIndex = 61;
+            this.dataEnvio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dataEnvio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dataEnvio.Location = new System.Drawing.Point(33, 112);
+            this.dataEnvio.Name = "dataEnvio";
+            this.dataEnvio.Size = new System.Drawing.Size(245, 27);
+            this.dataEnvio.TabIndex = 58;
             // 
-            // label8
+            // label7
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(30, 89);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(27, 17);
-            this.label8.TabIndex = 60;
-            this.label8.Text = "PL:";
-            // 
-            // lblQtdCaixas
-            // 
-            this.lblQtdCaixas.AutoSize = true;
-            this.lblQtdCaixas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQtdCaixas.Location = new System.Drawing.Point(193, 296);
-            this.lblQtdCaixas.Name = "lblQtdCaixas";
-            this.lblQtdCaixas.Size = new System.Drawing.Size(212, 20);
-            this.lblQtdCaixas.TabIndex = 62;
-            this.lblQtdCaixas.Text = "Quantidade de caixas total:";
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(31, 92);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(105, 17);
+            this.label7.TabIndex = 59;
+            this.label7.Text = "Data de Envio:";
             // 
             // ScreenRegistrarCaixas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 351);
-            this.Controls.Add(this.lblQtdCaixas);
-            this.Controls.Add(this.comboPL);
-            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dataEnvio);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.btnRegistrar);
             this.Controls.Add(this.comboMotorista);
@@ -234,7 +221,7 @@
             this.Controls.Add(this.comboVeiculos);
             this.Controls.Add(this.txtQtdCaixas);
             this.Controls.Add(this.comboFazDestino);
-            this.Controls.Add(this.comboFazOrigem);
+            this.Controls.Add(this.comboBarracao);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label4);
@@ -245,7 +232,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScreenRegistrarCaixas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Registrar Movimentações | TerraCode";
+            this.Text = "Registrar Saídas | TerraCode";
             this.Load += new System.EventHandler(this.ScreenRegistrarCaixas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtQtdCaixas)).EndInit();
             this.ResumeLayout(false);
@@ -254,7 +241,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.ComboBox comboFazOrigem;
+        private System.Windows.Forms.ComboBox comboBarracao;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label4;
@@ -268,8 +255,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnVoltar;
         private System.Windows.Forms.Button btnRegistrar;
-        private System.Windows.Forms.ComboBox comboPL;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label lblQtdCaixas;
+        private System.Windows.Forms.DateTimePicker dataEnvio;
+        private System.Windows.Forms.Label label7;
     }
 }

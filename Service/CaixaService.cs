@@ -1,6 +1,4 @@
-﻿using System.Data.SqlClient;
-using System;
-using TerraCode.Common;
+﻿using TerraCode.Common;
 using TerraCode.Repository;
 
 namespace TerraCode.Service
@@ -8,50 +6,59 @@ namespace TerraCode.Service
     public class CaixaService
     {
         private CaixaRepository _caixaRepository;
+
         public CaixaService()
         {
             _caixaRepository = new CaixaRepository();
         }
 
-        public ResultadoOperacao RegistrarCaixas(int qtdCaixas, string status) 
-        { 
-            if (qtdCaixas == 0)
+        public ResultadoOperacao AumentarCaixas(int qtdCaixas, int fazendaId)
+        {
+            if (qtdCaixas <= 0)
             {
-                return new ResultadoOperacao() { Sucesso = false, MensagemErro = "Insira um valor válido nas caixas."};
+                return new ResultadoOperacao() { Sucesso = false, MensagemErro = "Insira um valor válido nas caixas." };
             }
 
-            if (status == "Entrada")
-            {
-                bool resultado = _caixaRepository.AtualizarQuantidadeCaixas(qtdCaixas);
+            bool resultado = _caixaRepository.AumentarCaixas(fazendaId, qtdCaixas);
 
-                if (resultado)
-                {
-                    return new ResultadoOperacao() { Sucesso = true, MensagemErro = $"Entrada - {qtdCaixas} Registrado com sucesso!" };
-                }
-            } else if (status == "Saída")
+            if (resultado)
             {
-                if (_caixaRepository.RetornaTotalDeCaixas() >= qtdCaixas)
-                {
-                    bool resultado = _caixaRepository.AtualizarQuantidadeCaixas(-qtdCaixas);
-                    if (resultado)
-                    {
-                        return new ResultadoOperacao() { Sucesso = true, MensagemErro = $"Saida - {qtdCaixas} Registrado com sucesso!" };
-                    }
-                } else
-                {
-                    return new ResultadoOperacao() { Sucesso = false, MensagemErro = "Estoque de caixas insuficiente." };
-                }
-            } else if (string.IsNullOrEmpty(status))
-            {
-                return new ResultadoOperacao() { Sucesso = false, MensagemErro = $"Selecione um status (Entrada ou Saida)." };
+                return new ResultadoOperacao() { Sucesso = true, MensagemErro = $"Entrada de {qtdCaixas} caixas registrada com sucesso!" };
             }
-            return new ResultadoOperacao() { Sucesso = false, MensagemErro = $"{status} - Erro durante a operação." };
+            else
+            {
+                return new ResultadoOperacao() { Sucesso = false, MensagemErro = "Erro durante a operação de adicionar caixas." };
+            }
         }
 
-        public ResultadoOperacaoComConteudo<int> RetornaTotalDeCaixas()
+        public ResultadoOperacao RemoverCaixas(int qtdCaixas, int fazendaId)
         {
-            int resultado = _caixaRepository.RetornaTotalDeCaixas();
-            return new ResultadoOperacaoComConteudo<int>() { Sucesso = true, MensagemErro = "OK", Conteudo = resultado };
+            if (qtdCaixas <= 0)
+            {
+                return new ResultadoOperacao() { Sucesso = false, MensagemErro = "Insira um valor válido nas caixas." };
+            }
+
+            bool resultado = _caixaRepository.DiminuirCaixas(fazendaId, qtdCaixas);
+
+            if (resultado)
+            {
+                return new ResultadoOperacao() { Sucesso = true, MensagemErro = $"Saída de {qtdCaixas} caixas registrada com sucesso!" };
+            }
+            else
+            {
+                return new ResultadoOperacao() { Sucesso = false, MensagemErro = "Erro durante a operação de remover caixas." };
+            }
+        }
+
+        public ResultadoOperacaoComConteudo<int> RetornaTotalDeCaixasPorFazenda(int fazendaId)
+        {
+            int resultado = _caixaRepository.ObterCaixasDisponiveis(fazendaId);
+            return new ResultadoOperacaoComConteudo<int>()
+            {
+                Sucesso = true,
+                MensagemErro = "Operação realizada com sucesso.",
+                Conteudo = resultado
+            };
         }
     }
 }
