@@ -36,68 +36,76 @@ namespace TerraCode.Service
                 PLId = plId
             };
 
-            foreach (var tipoClassificacao in classificacoesPorTipo)
+            foreach (var categoria in classificacoesPorTipo)
             {
-                string tipo = tipoClassificacao.Key;
-                var valores = tipoClassificacao.Value;
+                string tipo = categoria.Key;
+                var valores = categoria.Value;
 
-                switch (tipo)
+                foreach (var tipoClassificacao in valores)
                 {
-                    case "8":
-                        estoque.Extra8 = valores.ContainsKey("Extra") ? valores["Extra"] : 0;
-                        estoque.Cat8 = valores.ContainsKey("Cat") ? valores["Cat"] : 0;
-                        estoque.Especial8 = valores.ContainsKey("Especial") ? valores["Especial"] : 0;
-                        estoque.Escovado8 = valores.ContainsKey("Escovado") ? valores["Escovado"] : 0;
-                        estoque.Comercial8 = valores.ContainsKey("Comercial") ? valores["Comercial"] : 0;
-                        break;
-                    case "7":
-                        estoque.Extra7 = valores.ContainsKey("Extra") ? valores["Extra"] : 0;
-                        estoque.Cat7 = valores.ContainsKey("Cat") ? valores["Cat"] : 0;
-                        estoque.Especial7 = valores.ContainsKey("Especial") ? valores["Especial"] : 0;
-                        estoque.Escovado7 = valores.ContainsKey("Escovado") ? valores["Escovado"] : 0;
-                        estoque.Comercial7 = valores.ContainsKey("Comercial") ? valores["Comercial"] : 0;
-                        break;
-                    case "6":
-                        estoque.Extra6 = valores.ContainsKey("Extra") ? valores["Extra"] : 0;
-                        estoque.Cat6 = valores.ContainsKey("Cat") ? valores["Cat"] : 0;
-                        estoque.Especial6 = valores.ContainsKey("Especial") ? valores["Especial"] : 0;
-                        estoque.Escovado6 = valores.ContainsKey("Escovado") ? valores["Escovado"] : 0;
-                        estoque.Comercial6 = valores.ContainsKey("Comercial") ? valores["Comercial"] : 0;
-                        break;
-                    case "5":
-                        estoque.Extra5 = valores.ContainsKey("Extra") ? valores["Extra"] : 0;
-                        estoque.Cat5 = valores.ContainsKey("Cat") ? valores["Cat"] : 0;
-                        estoque.Especial5 = valores.ContainsKey("Especial") ? valores["Especial"] : 0;
-                        estoque.Escovado5 = valores.ContainsKey("Escovado") ? valores["Escovado"] : 0;
-                        estoque.Comercial5 = valores.ContainsKey("Comercial") ? valores["Comercial"] : 0;
-                        break;
-                    case "4":
-                        estoque.Extra4 = valores.ContainsKey("Extra") ? valores["Extra"] : 0;
-                        estoque.Cat4 = valores.ContainsKey("Cat") ? valores["Cat"] : 0;
-                        estoque.Especial4 = valores.ContainsKey("Especial") ? valores["Especial"] : 0;
-                        estoque.Escovado4 = valores.ContainsKey("Escovado") ? valores["Escovado"] : 0;
-                        estoque.Comercial4 = valores.ContainsKey("Comercial") ? valores["Comercial"] : 0;
-                        break;
-                    case "3":
-                        estoque.Escovado3 = valores.ContainsKey("numQuantidade") ? valores["numQuantidade"] : 0;
-                        break;
-                    case "Borrado20kg":
-                        estoque.Borrado20kg = valores.ContainsKey("numQuantidade") ? valores["numQuantidade"] : 0;
-                        break;
-                    case "Escovado2_3":
-                        estoque.Escovado2_3 = valores.ContainsKey("numQuantidade") ? valores["numQuantidade"] : 0;
-                        break;
-                    case "Industrial20kg":
-                        estoque.Industrial20kg = valores.ContainsKey("numQuantidade") ? valores["numQuantidade"] : 0;
-                        break;
-                    case "Dente20kg":
-                        estoque.Dente20kg = valores.ContainsKey("numQuantidade") ? valores["numQuantidade"] : 0;
-                        break;
-                    default:
-                        return new ResultadoOperacao { Sucesso = false, MensagemErro = $"Tipo de classificação '{tipo}' desconhecido." };
+                    string tipoProduto = tipoClassificacao.Key;
+                    int quantidade = tipoClassificacao.Value;
+
+                    switch (tipo)
+                    {
+                        case "Extra":
+                            if (tipoProduto == "8") estoque.Extra8 = quantidade;
+                            else if (tipoProduto == "7") estoque.Extra7 = quantidade;
+                            else if (tipoProduto == "6") estoque.Extra6 = quantidade;
+                            else if (tipoProduto == "5") estoque.Extra5 = quantidade;
+                            else if (tipoProduto == "4") estoque.Extra4 = quantidade;
+                            break;
+
+                        case "Cat":
+                            if (tipoProduto == "8") estoque.Cat8 = quantidade;
+                            else if (tipoProduto == "7") estoque.Cat7 = quantidade;
+                            else if (tipoProduto == "6") estoque.Cat6 = quantidade;
+                            else if (tipoProduto == "5") estoque.Cat5 = quantidade;
+                            else if (tipoProduto == "4") estoque.Cat4 = quantidade;
+                            break;
+
+                        case "Especial":
+                            if (tipoProduto == "8") estoque.Especial8 = quantidade;
+                            else if (tipoProduto == "7") estoque.Especial7 = quantidade;
+                            else if (tipoProduto == "6") estoque.Especial6 = quantidade;
+                            else if (tipoProduto == "5") estoque.Especial5 = quantidade;
+                            else if (tipoProduto == "4") estoque.Especial4 = quantidade;
+                            break;
+
+                        case "Escovado":
+                            if (tipoProduto == "8") estoque.Escovado8 = quantidade;
+                            else if (tipoProduto == "7") estoque.Escovado7 = quantidade;
+                            else if (tipoProduto == "6") estoque.Escovado6 = quantidade;
+                            else if (tipoProduto == "5") estoque.Escovado5 = quantidade;
+                            else if (tipoProduto == "4") estoque.Escovado4 = quantidade;
+                            else if (tipoProduto == "3") estoque.Escovado3 = quantidade;
+                            break;
+
+                        case "Comercial":
+                            if (tipoProduto == "8") estoque.Comercial8 = quantidade;
+                            else if (tipoProduto == "7") estoque.Comercial7 = quantidade;
+                            else if (tipoProduto == "6") estoque.Comercial6 = quantidade;
+                            else if (tipoProduto == "5") estoque.Comercial5 = quantidade;
+                            else if (tipoProduto == "4") estoque.Comercial4 = quantidade;
+                            break;
+
+                        case "Borrado":
+                            if (tipoProduto == "20kg") estoque.Borrado20kg = quantidade;
+                            break;
+
+                        case "Industrial":
+                            if (tipoProduto == "20kg") estoque.Industrial20kg = quantidade;
+                            break;
+
+                        case "Dente":
+                            if (tipoProduto == "20kg") estoque.Dente20kg = quantidade;
+                            break;
+
+                        default:
+                            return new ResultadoOperacao { Sucesso = false, MensagemErro = $"Tipo de classificação '{tipo}' desconhecido." };
+                    }
                 }
             }
-
             bool sucesso = _estoqueRepository.CreateEstoque(estoque);
             return new ResultadoOperacao
             {
@@ -117,21 +125,11 @@ namespace TerraCode.Service
             };
         }
 
-        public ResultadoOperacaoComConteudo<List<Estoque>> RetornaEstoqueFiltrado(DateTime? dataInicial = null, DateTime? dataFinal = null, string evento = null, string documento = null)
+        public ResultadoOperacaoComConteudo<Dictionary<string, int>> RetornaEstoqueDisponivelPLeFazenda(int fazendaId, int plId, string evento)
         {
-            List<Estoque> estoques = _estoqueRepository.RetornaEstoquesFiltrado(dataInicial, dataFinal, evento, documento, null, null, null);
-            return new ResultadoOperacaoComConteudo<List<Estoque>>
-            {
-                Sucesso = true,
-                MensagemErro = "OK",
-                Conteudo = estoques
-            };
-        }
+            var estoqueAtual = _estoqueRepository.GetEstoqueAtual(fazendaId, plId, evento);
 
-        public ResultadoOperacaoComConteudo<Dictionary<string, int>> GetEstoqueGeral()
-        {
-            var todosEstoques = _estoqueRepository.GetAllEstoques();
-            var estoqueGeral = new Dictionary<string, int>
+            var estoqueDisponivel = new Dictionary<string, int>
             {
                 { "Extra 8", 0 },
                 { "Cat 8", 0 },
@@ -165,50 +163,26 @@ namespace TerraCode.Service
                 { "Dente 20kg", 0 }
             };
 
-            foreach (var estoque in todosEstoques)
+            foreach (var key in estoqueAtual.Keys)
             {
-                estoqueGeral["Extra 8"] += estoque.Extra8 ?? 0;
-                estoqueGeral["Cat 8"] += estoque.Cat8 ?? 0;
-                estoqueGeral["Especial 8"] += estoque.Especial8 ?? 0;
-                estoqueGeral["Escovado 8"] += estoque.Escovado8 ?? 0;
-                estoqueGeral["Comercial 8"] += estoque.Comercial8 ?? 0;
-
-                estoqueGeral["Extra 7"] += estoque.Extra7 ?? 0;
-                estoqueGeral["Cat 7"] += estoque.Cat7 ?? 0;
-                estoqueGeral["Especial 7"] += estoque.Especial7 ?? 0;
-                estoqueGeral["Escovado 7"] += estoque.Escovado7 ?? 0;
-                estoqueGeral["Comercial 7"] += estoque.Comercial7 ?? 0;
-
-                estoqueGeral["Extra 6"] += estoque.Extra6 ?? 0;
-                estoqueGeral["Cat 6"] += estoque.Cat6 ?? 0;
-                estoqueGeral["Especial 6"] += estoque.Especial6 ?? 0;
-                estoqueGeral["Escovado 6"] += estoque.Escovado6 ?? 0;
-                estoqueGeral["Comercial 6"] += estoque.Comercial6 ?? 0;
-
-                estoqueGeral["Extra 5"] += estoque.Extra5 ?? 0;
-                estoqueGeral["Cat 5"] += estoque.Cat5 ?? 0;
-                estoqueGeral["Especial 5"] += estoque.Especial5 ?? 0;
-                estoqueGeral["Escovado 5"] += estoque.Escovado5 ?? 0;
-                estoqueGeral["Comercial 5"] += estoque.Comercial5 ?? 0;
-
-                estoqueGeral["Extra 4"] += estoque.Extra4 ?? 0;
-                estoqueGeral["Cat 4"] += estoque.Cat4 ?? 0;
-                estoqueGeral["Especial 4"] += estoque.Especial4 ?? 0;
-                estoqueGeral["Escovado 4"] += estoque.Escovado4 ?? 0;
-                estoqueGeral["Comercial 4"] += estoque.Comercial4 ?? 0;
-
-                estoqueGeral["Escovado 3"] += estoque.Escovado3 ?? 0;
-                estoqueGeral["Borrado 20kg"] += estoque.Borrado20kg ?? 0;
-                estoqueGeral["Escovado 2/3"] += estoque.Escovado2_3 ?? 0;
-                estoqueGeral["Industrial 20kg"] += estoque.Industrial20kg ?? 0;
-                estoqueGeral["Dente 20kg"] += estoque.Dente20kg ?? 0;
+                estoqueDisponivel[key] = estoqueAtual[key];
             }
 
-            return new ResultadoOperacaoComConteudo<Dictionary<string, int>>
+            return new ResultadoOperacaoComConteudo<Dictionary<string, int>>()
             {
                 Sucesso = true,
-                MensagemErro = "Ok",
-                Conteudo = estoqueGeral
+                Conteudo = estoqueDisponivel
+            };
+        }
+    
+        public ResultadoOperacaoComConteudo<List<Estoque>> RetornaEstoqueFiltrado(DateTime? dataInicial = null, DateTime? dataFinal = null, string evento = null, string documento = null)
+        {
+            List<Estoque> estoques = _estoqueRepository.RetornaEstoquesFiltrado(dataInicial, dataFinal, evento, documento, null, null, null);
+            return new ResultadoOperacaoComConteudo<List<Estoque>>
+            {
+                Sucesso = true,
+                MensagemErro = "OK",
+                Conteudo = estoques
             };
         }
 
@@ -251,43 +225,44 @@ namespace TerraCode.Service
 
             foreach (var estoque in todosEstoques)
             {
-                estoqueGeral["Extra 8"] += estoque.Extra8 ?? 0;
-                estoqueGeral["Cat 8"] += estoque.Cat8 ?? 0;
-                estoqueGeral["Especial 8"] += estoque.Especial8 ?? 0;
-                estoqueGeral["Escovado 8"] += estoque.Escovado8 ?? 0;
-                estoqueGeral["Comercial 8"] += estoque.Comercial8 ?? 0;
+                int multiplier = estoque.Evento == "Venda" ? -1 : 1;
 
-                estoqueGeral["Extra 7"] += estoque.Extra7 ?? 0;
-                estoqueGeral["Cat 7"] += estoque.Cat7 ?? 0;
-                estoqueGeral["Especial 7"] += estoque.Especial7 ?? 0;
-                estoqueGeral["Escovado 7"] += estoque.Escovado7 ?? 0;
-                estoqueGeral["Comercial 7"] += estoque.Comercial7 ?? 0;
+                estoqueGeral["Extra 8"] += (estoque.Extra8 ?? 0) * multiplier;
+                estoqueGeral["Cat 8"] += (estoque.Cat8 ?? 0) * multiplier;
+                estoqueGeral["Especial 8"] += (estoque.Especial8 ?? 0) * multiplier;
+                estoqueGeral["Escovado 8"] += (estoque.Escovado8 ?? 0) * multiplier;
+                estoqueGeral["Comercial 8"] += (estoque.Comercial8 ?? 0) * multiplier;
 
-                estoqueGeral["Extra 6"] += estoque.Extra6 ?? 0;
-                estoqueGeral["Cat 6"] += estoque.Cat6 ?? 0;
-                estoqueGeral["Especial 6"] += estoque.Especial6 ?? 0;
-                estoqueGeral["Escovado 6"] += estoque.Escovado6 ?? 0;
-                estoqueGeral["Comercial 6"] += estoque.Comercial6 ?? 0;
+                estoqueGeral["Extra 7"] += (estoque.Extra7 ?? 0) * multiplier;
+                estoqueGeral["Cat 7"] += (estoque.Cat7 ?? 0) * multiplier;
+                estoqueGeral["Especial 7"] += (estoque.Especial7 ?? 0) * multiplier;
+                estoqueGeral["Escovado 7"] += (estoque.Escovado7 ?? 0) * multiplier;
+                estoqueGeral["Comercial 7"] += (estoque.Comercial7 ?? 0) * multiplier;
 
-                estoqueGeral["Extra 5"] += estoque.Extra5 ?? 0;
-                estoqueGeral["Cat 5"] += estoque.Cat5 ?? 0;
-                estoqueGeral["Especial 5"] += estoque.Especial5 ?? 0;
-                estoqueGeral["Escovado 5"] += estoque.Escovado5 ?? 0;
-                estoqueGeral["Comercial 5"] += estoque.Comercial5 ?? 0;
+                estoqueGeral["Extra 6"] += (estoque.Extra6 ?? 0) * multiplier;
+                estoqueGeral["Cat 6"] += (estoque.Cat6 ?? 0) * multiplier;
+                estoqueGeral["Especial 6"] += (estoque.Especial6 ?? 0) * multiplier;
+                estoqueGeral["Escovado 6"] += (estoque.Escovado6 ?? 0) * multiplier;
+                estoqueGeral["Comercial 6"] += (estoque.Comercial6 ?? 0) * multiplier;
 
-                estoqueGeral["Extra 4"] += estoque.Extra4 ?? 0;
-                estoqueGeral["Cat 4"] += estoque.Cat4 ?? 0;
-                estoqueGeral["Especial 4"] += estoque.Especial4 ?? 0;
-                estoqueGeral["Escovado 4"] += estoque.Escovado4 ?? 0;
-                estoqueGeral["Comercial 4"] += estoque.Comercial4 ?? 0;
+                estoqueGeral["Extra 5"] += (estoque.Extra5 ?? 0) * multiplier;
+                estoqueGeral["Cat 5"] += (estoque.Cat5 ?? 0) * multiplier;
+                estoqueGeral["Especial 5"] += (estoque.Especial5 ?? 0) * multiplier;
+                estoqueGeral["Escovado 5"] += (estoque.Escovado5 ?? 0) * multiplier;
+                estoqueGeral["Comercial 5"] += (estoque.Comercial5 ?? 0) * multiplier;
 
-                estoqueGeral["Escovado 3"] += estoque.Escovado3 ?? 0;
-                estoqueGeral["Borrado 20kg"] += estoque.Borrado20kg ?? 0;
-                estoqueGeral["Escovado 2/3"] += estoque.Escovado2_3 ?? 0;
-                estoqueGeral["Industrial 20kg"] += estoque.Industrial20kg ?? 0;
-                estoqueGeral["Dente 20kg"] += estoque.Dente20kg ?? 0;
+                estoqueGeral["Extra 4"] += (estoque.Extra4 ?? 0) * multiplier;
+                estoqueGeral["Cat 4"] += (estoque.Cat4 ?? 0) * multiplier;
+                estoqueGeral["Especial 4"] += (estoque.Especial4 ?? 0) * multiplier;
+                estoqueGeral["Escovado 4"] += (estoque.Escovado4 ?? 0) * multiplier;
+                estoqueGeral["Comercial 4"] += (estoque.Comercial4 ?? 0) * multiplier;
+
+                estoqueGeral["Escovado 3"] += (estoque.Escovado3 ?? 0) * multiplier;
+                estoqueGeral["Borrado 20kg"] += (estoque.Borrado20kg ?? 0) * multiplier;
+                estoqueGeral["Escovado 2/3"] += (estoque.Escovado2_3 ?? 0) * multiplier;
+                estoqueGeral["Industrial 20kg"] += (estoque.Industrial20kg ?? 0) * multiplier;
+                estoqueGeral["Dente 20kg"] += (estoque.Dente20kg ?? 0) * multiplier;
             }
-
             return new ResultadoOperacaoComConteudo<Dictionary<string, int>>
             {
                 Sucesso = true,

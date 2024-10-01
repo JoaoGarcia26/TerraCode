@@ -35,3 +35,5 @@ C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.csproj.Copy
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.exe
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.pdb
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Fazendas.ScreenCriarSafra.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Vendas.ScreenVendas.resources
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Vendas.ScreenCriarVendas.resources

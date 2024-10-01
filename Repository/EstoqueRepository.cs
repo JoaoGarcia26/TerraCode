@@ -93,6 +93,93 @@ namespace TerraCode.Repository
             }
         }
 
+        public Dictionary<string, int> GetEstoqueAtual(int fazendaId, int plId, string evento)
+        {
+            var estoqueAtual = new Dictionary<string, int>();
+            string query = @"
+            SELECT 
+                SUM(Extra8) AS TotalExtra8,
+                SUM(Cat8) AS TotalCat8,
+                SUM(Especial8) AS TotalEspecial8,
+                SUM(Escovado8) AS TotalEscovado8,
+                SUM(Comercial8) AS TotalComercial8,
+                SUM(Extra7) AS TotalExtra7,
+                SUM(Cat7) AS TotalCat7,
+                SUM(Especial7) AS TotalEspecial7,
+                SUM(Escovado7) AS TotalEscovado7,
+                SUM(Comercial7) AS TotalComercial7,
+                SUM(Extra6) AS TotalExtra6,
+                SUM(Cat6) AS TotalCat6,
+                SUM(Especial6) AS TotalEspecial6,
+                SUM(Escovado6) AS TotalEscovado6,
+                SUM(Comercial6) AS TotalComercial6,
+                SUM(Extra5) AS TotalExtra5,
+                SUM(Cat5) AS TotalCat5,
+                SUM(Especial5) AS TotalEspecial5,
+                SUM(Escovado5) AS TotalEscovado5,
+                SUM(Comercial5) AS TotalComercial5,
+                SUM(Extra4) AS TotalExtra4,
+                SUM(Cat4) AS TotalCat4,
+                SUM(Especial4) AS TotalEspecial4,
+                SUM(Escovado4) AS TotalEscovado4,
+                SUM(Comercial4) AS TotalComercial4,
+                SUM(Escovado3) AS TotalEscovado3,
+                SUM(Borrado20kg) AS TotalBorrado20kg,
+                SUM(Escovado2_3) AS TotalEscovado2_3,
+                SUM(Industrial20kg) AS TotalIndustrial20kg,
+                SUM(Dente20kg) AS TotalDente20kg
+            FROM Estoque
+            WHERE FazendaId = @FazendaId AND PLId = @PLId AND Evento = @Evento
+            GROUP BY FazendaId, PLId";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@FazendaId", fazendaId);
+                command.Parameters.AddWithValue("@PLId", plId);
+                command.Parameters.AddWithValue("@Evento", evento);
+
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        estoqueAtual["Extra 8"] = reader.IsDBNull(0) ? 0 : reader.GetInt32(0);
+                        estoqueAtual["Cat 8"] = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
+                        estoqueAtual["Especial 8"] = reader.IsDBNull(2) ? 0 : reader.GetInt32(2);
+                        estoqueAtual["Escovado 8"] = reader.IsDBNull(3) ? 0 : reader.GetInt32(3);
+                        estoqueAtual["Comercial 8"] = reader.IsDBNull(4) ? 0 : reader.GetInt32(4);
+                        estoqueAtual["Extra 7"] = reader.IsDBNull(5) ? 0 : reader.GetInt32(5);
+                        estoqueAtual["Cat 7"] = reader.IsDBNull(6) ? 0 : reader.GetInt32(6);
+                        estoqueAtual["Especial 7"] = reader.IsDBNull(7) ? 0 : reader.GetInt32(7);
+                        estoqueAtual["Escovado 7"] = reader.IsDBNull(8) ? 0 : reader.GetInt32(8);
+                        estoqueAtual["Comercial 7"] = reader.IsDBNull(9) ? 0 : reader.GetInt32(9);
+                        estoqueAtual["Extra 6"] = reader.IsDBNull(10) ? 0 : reader.GetInt32(10);
+                        estoqueAtual["Cat 6"] = reader.IsDBNull(11) ? 0 : reader.GetInt32(11);
+                        estoqueAtual["Especial 6"] = reader.IsDBNull(12) ? 0 : reader.GetInt32(12);
+                        estoqueAtual["Escovado 6"] = reader.IsDBNull(13) ? 0 : reader.GetInt32(13);
+                        estoqueAtual["Comercial 6"] = reader.IsDBNull(14) ? 0 : reader.GetInt32(14);
+                        estoqueAtual["Extra 5"] = reader.IsDBNull(15) ? 0 : reader.GetInt32(15);
+                        estoqueAtual["Cat 5"] = reader.IsDBNull(16) ? 0 : reader.GetInt32(16);
+                        estoqueAtual["Especial 5"] = reader.IsDBNull(17) ? 0 : reader.GetInt32(17);
+                        estoqueAtual["Escovado 5"] = reader.IsDBNull(18) ? 0 : reader.GetInt32(18);
+                        estoqueAtual["Comercial 5"] = reader.IsDBNull(19) ? 0 : reader.GetInt32(19);
+                        estoqueAtual["Extra 4"] = reader.IsDBNull(20) ? 0 : reader.GetInt32(20);
+                        estoqueAtual["Cat 4"] = reader.IsDBNull(21) ? 0 : reader.GetInt32(21);
+                        estoqueAtual["Especial 4"] = reader.IsDBNull(22) ? 0 : reader.GetInt32(22);
+                        estoqueAtual["Escovado 4"] = reader.IsDBNull(23) ? 0 : reader.GetInt32(23);
+                        estoqueAtual["Comercial 4"] = reader.IsDBNull(24) ? 0 : reader.GetInt32(24);
+                        estoqueAtual["Escovado 3"] = reader.IsDBNull(25) ? 0 : reader.GetInt32(25);
+                        estoqueAtual["Borrado 20kg"] = reader.IsDBNull(26) ? 0 : reader.GetInt32(26);
+                        estoqueAtual["Escovado 2/3"] = reader.IsDBNull(27) ? 0 : reader.GetInt32(27);
+                        estoqueAtual["Industrial 20kg"] = reader.IsDBNull(28) ? 0 : reader.GetInt32(28);
+                        estoqueAtual["Dente 20kg"] = reader.IsDBNull(29) ? 0 : reader.GetInt32(29);
+                    }
+                }
+            }
+            return estoqueAtual;
+        }
+
         public Estoque GetEstoqueById(int id)
         {
             Estoque estoque = null;

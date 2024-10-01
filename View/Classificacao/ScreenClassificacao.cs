@@ -21,6 +21,25 @@ namespace TerraCode.View.Classificacao
 
         private void ScreenClassificacao_Load(object sender, EventArgs e)
         {
+            CarregaTabela();
+        }
+
+        private void btnRegistrar_Click(object sender, EventArgs e)
+        {
+            if (_formRegistrarClassificacao == null || _formRegistrarClassificacao.IsDisposed)
+            {
+                _formRegistrarClassificacao = new ScreenRegistrarClassificacao();
+            }
+            _formRegistrarClassificacao.ShowDialog();
+        }
+
+        private void ScreenPreClassificacao_Activated(object sender, EventArgs e)
+        {
+            ScreenClassificacao_Load(sender, e);
+        }
+
+        private void CarregaTabela()
+        {
             var resultado = preClassificacaoService.RetornaTodasPreClassificacoes();
 
             DataTable dt = new DataTable();
@@ -89,20 +108,6 @@ namespace TerraCode.View.Classificacao
             dataGridView1.Columns["Perda"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dataGridView1.Refresh();
-        }
-
-        private void btnRegistrar_Click(object sender, EventArgs e)
-        {
-            if (_formRegistrarClassificacao == null || _formRegistrarClassificacao.IsDisposed)
-            {
-                _formRegistrarClassificacao = new ScreenRegistrarClassificacao();
-            }
-            _formRegistrarClassificacao.ShowDialog();
-        }
-
-        private void ScreenPreClassificacao_Activated(object sender, EventArgs e)
-        {
-            ScreenClassificacao_Load(sender, e);
         }
     }
 }

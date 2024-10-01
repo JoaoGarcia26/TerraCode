@@ -81,6 +81,7 @@
     <Compile Include="Model\Safra.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Model\Veiculo.cs" />
+    <Compile Include="Model\Venda.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\CaixaRepository.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Repository\SafraRepository.cs" />
     <Compile Include="Repository\UsuarioRepository.cs" />
     <Compile Include="Repository\VeiculoRepository.cs" />
+    <Compile Include="Repository\VendasRepository.cs" />
     <Compile Include="Service\CaixaService.cs" />
     <Compile Include="Service\EstoqueService.cs" />
     <Compile Include="Service\FazendaService.cs" />
@@ -106,6 +108,7 @@
     <Compile Include="Service\SafraService.cs" />
     <Compile Include="Service\UsuarioService.cs" />
     <Compile Include="Service\VeiculoService.cs" />
+    <Compile Include="Service\VendasService.cs" />
     <Compile Include="View\AlhoDaRoca\ScreenAlhoDaRoca.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +247,18 @@
     <Compile Include="View\Veiculos\ScreenVeiculos.Designer.cs">
       <DependentUpon>ScreenVeiculos.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\Vendas\ScreenCriarVendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Vendas\ScreenCriarVendas.Designer.cs">
+      <DependentUpon>ScreenCriarVendas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Vendas\ScreenVendas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Vendas\ScreenVendas.Designer.cs">
+      <DependentUpon>ScreenVendas.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -322,6 +337,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Veiculos\ScreenVeiculos.resx">
       <DependentUpon>ScreenVeiculos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Vendas\ScreenCriarVendas.resx">
+      <DependentUpon>ScreenCriarVendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Vendas\ScreenVendas.resx">
+      <DependentUpon>ScreenVendas.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="dbTerraCodeDataSet.xsc">
       <DependentUpon>dbTerraCodeDataSet.xsd</DependentUpon>

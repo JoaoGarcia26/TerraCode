@@ -63,6 +63,7 @@
             this.btnVeiculos = new System.Windows.Forms.Button();
             this.btnCaixas = new System.Windows.Forms.Button();
             this.btnClassificacao = new System.Windows.Forms.Button();
+            this.btnVendas = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,7 +93,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -102,7 +103,7 @@
             this.adicionarUsuárioToolStripMenuItem,
             this.listarUsuáriosToolStripMenuItem});
             this.usuáriosToolStripMenuItem.Name = "usuáriosToolStripMenuItem";
-            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(79, 26);
+            this.usuáriosToolStripMenuItem.Size = new System.Drawing.Size(79, 24);
             this.usuáriosToolStripMenuItem.Text = "Usuários";
             // 
             // adicionarUsuárioToolStripMenuItem
@@ -126,25 +127,25 @@
             this.registrarSaidaToolStripMenuItem1,
             this.listarEstoqueToolStripMenuItem});
             this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
-            this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(76, 26);
+            this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
             this.estoqueToolStripMenuItem.Text = "Estoque";
             // 
             // registrarEntradaToolStripMenuItem1
             // 
             this.registrarEntradaToolStripMenuItem1.Name = "registrarEntradaToolStripMenuItem1";
-            this.registrarEntradaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.registrarEntradaToolStripMenuItem1.Size = new System.Drawing.Size(206, 26);
             this.registrarEntradaToolStripMenuItem1.Text = "Registrar Entrada";
             // 
             // registrarSaidaToolStripMenuItem1
             // 
             this.registrarSaidaToolStripMenuItem1.Name = "registrarSaidaToolStripMenuItem1";
-            this.registrarSaidaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.registrarSaidaToolStripMenuItem1.Size = new System.Drawing.Size(206, 26);
             this.registrarSaidaToolStripMenuItem1.Text = "Registrar Saida";
             // 
             // listarEstoqueToolStripMenuItem
             // 
             this.listarEstoqueToolStripMenuItem.Name = "listarEstoqueToolStripMenuItem";
-            this.listarEstoqueToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.listarEstoqueToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.listarEstoqueToolStripMenuItem.Text = "Listar Estoque";
             // 
             // alhoDaRoçaToolStripMenuItem
@@ -154,25 +155,25 @@
             this.registrarSaidaToolStripMenuItem,
             this.listarProduçãoToolStripMenuItem});
             this.alhoDaRoçaToolStripMenuItem.Name = "alhoDaRoçaToolStripMenuItem";
-            this.alhoDaRoçaToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.alhoDaRoçaToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.alhoDaRoçaToolStripMenuItem.Text = "Produção de Roça";
             // 
             // registrarEntradaToolStripMenuItem
             // 
             this.registrarEntradaToolStripMenuItem.Name = "registrarEntradaToolStripMenuItem";
-            this.registrarEntradaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registrarEntradaToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.registrarEntradaToolStripMenuItem.Text = "Registrar Entrada";
             // 
             // registrarSaidaToolStripMenuItem
             // 
             this.registrarSaidaToolStripMenuItem.Name = "registrarSaidaToolStripMenuItem";
-            this.registrarSaidaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.registrarSaidaToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.registrarSaidaToolStripMenuItem.Text = "Registrar Saida";
             // 
             // listarProduçãoToolStripMenuItem
             // 
             this.listarProduçãoToolStripMenuItem.Name = "listarProduçãoToolStripMenuItem";
-            this.listarProduçãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.listarProduçãoToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
             this.listarProduçãoToolStripMenuItem.Text = "Listar Produção";
             // 
             // fazendaToolStripMenuItem
@@ -182,7 +183,7 @@
             this.listarTodasToolStripMenuItem,
             this.pLsToolStripMenuItem});
             this.fazendaToolStripMenuItem.Name = "fazendaToolStripMenuItem";
-            this.fazendaToolStripMenuItem.Size = new System.Drawing.Size(83, 26);
+            this.fazendaToolStripMenuItem.Size = new System.Drawing.Size(83, 24);
             this.fazendaToolStripMenuItem.Text = "Fazendas";
             // 
             // cadastrarToolStripMenuItem
@@ -228,7 +229,7 @@
             this.cadastrarToolStripMenuItem1,
             this.listarTodosOsMotoristasToolStripMenuItem});
             this.motoristasToolStripMenuItem.Name = "motoristasToolStripMenuItem";
-            this.motoristasToolStripMenuItem.Size = new System.Drawing.Size(93, 26);
+            this.motoristasToolStripMenuItem.Size = new System.Drawing.Size(93, 24);
             this.motoristasToolStripMenuItem.Text = "Motoristas";
             // 
             // cadastrarToolStripMenuItem1
@@ -251,7 +252,7 @@
             this.cadastrarVeículoToolStripMenuItem,
             this.listarVeículosToolStripMenuItem});
             this.veículosToolStripMenuItem.Name = "veículosToolStripMenuItem";
-            this.veículosToolStripMenuItem.Size = new System.Drawing.Size(77, 26);
+            this.veículosToolStripMenuItem.Size = new System.Drawing.Size(77, 24);
             this.veículosToolStripMenuItem.Text = "Veículos";
             // 
             // cadastrarVeículoToolStripMenuItem
@@ -374,12 +375,25 @@
             this.btnClassificacao.UseVisualStyleBackColor = true;
             this.btnClassificacao.Click += new System.EventHandler(this.btnClassificacao_Click);
             // 
+            // btnVendas
+            // 
+            this.btnVendas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVendas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVendas.Location = new System.Drawing.Point(186, 357);
+            this.btnVendas.Name = "btnVendas";
+            this.btnVendas.Size = new System.Drawing.Size(164, 55);
+            this.btnVendas.TabIndex = 11;
+            this.btnVendas.Text = "Vendas";
+            this.btnVendas.UseVisualStyleBackColor = true;
+            this.btnVendas.Click += new System.EventHandler(this.btnVendas_Click);
+            // 
             // MenuGeral
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnVendas);
             this.Controls.Add(this.btnClassificacao);
             this.Controls.Add(this.btnCaixas);
             this.Controls.Add(this.btnVeiculos);
@@ -439,5 +453,6 @@
         private System.Windows.Forms.ToolStripMenuItem listarVeículosToolStripMenuItem;
         private System.Windows.Forms.Button btnCaixas;
         private System.Windows.Forms.Button btnClassificacao;
+        private System.Windows.Forms.Button btnVendas;
     }
 }

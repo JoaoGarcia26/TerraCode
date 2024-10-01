@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using TerraCode.View.AlhoDaRoca;
 using TerraCode.View.Classificacao;
 using TerraCode.View.Estoque;
+using TerraCode.View.Vendas;
 
 namespace TerraCode.View
 {
@@ -25,6 +26,7 @@ namespace TerraCode.View
         private ScreenPreClassificacao _formClassificacao;
         private ScreenRegistrarClassificacao _formRegistrarClassificacao;
         private ScreenEstoque _formEstoque;
+        private ScreenVendas _formVendas;
 
         public MenuGeral()
         {
@@ -196,6 +198,15 @@ namespace TerraCode.View
                 _formEstoque = new ScreenEstoque();
             }
             _formEstoque.ShowDialog();
+        }
+
+        private void btnVendas_Click(object sender, EventArgs e)
+        {
+            if (_formVendas == null || _formVendas.IsDisposed)
+            {
+                _formVendas = new ScreenVendas();
+            }
+            _formVendas.ShowDialog();
         }
     }
 }
