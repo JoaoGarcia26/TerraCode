@@ -14,7 +14,7 @@ namespace TerraCode.Service
             _fazendaRepository = new FazendaRepository();
         }
 
-        public ResultadoOperacao CriarFazenda(string nome, string localizacao, float areaPlantada, bool isBarracao)
+        public ResultadoOperacao CriarFazenda(string nome, string localizacao, bool isBarracao)
         {
             if (string.IsNullOrEmpty(nome))
             {
@@ -26,12 +26,7 @@ namespace TerraCode.Service
                 return new ResultadoOperacao { Sucesso = false, MensagemErro = "Localização é obrigatória." };
             }
 
-            if (!isBarracao && areaPlantada <= 0)
-            {
-                return new ResultadoOperacao { Sucesso = false, MensagemErro = "Hectare deve ser maior que zero." };
-            }
-
-            bool sucesso = _fazendaRepository.CreateFazenda(nome, localizacao, areaPlantada, isBarracao);
+            bool sucesso = _fazendaRepository.CreateFazenda(nome, localizacao, isBarracao);
 
             if (sucesso)
             {

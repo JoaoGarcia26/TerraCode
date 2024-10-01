@@ -50,6 +50,10 @@
             this.lblComercial = new System.Windows.Forms.Label();
             this.numValor = new System.Windows.Forms.NumericUpDown();
             this.lblQuantidade = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboFazenda = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.comboPL = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.numExtra)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numEspecial)).BeginInit();
@@ -70,7 +74,7 @@
             // 
             // btnRegistrarLancamento
             // 
-            this.btnRegistrarLancamento.Location = new System.Drawing.Point(51, 294);
+            this.btnRegistrarLancamento.Location = new System.Drawing.Point(282, 353);
             this.btnRegistrarLancamento.Name = "btnRegistrarLancamento";
             this.btnRegistrarLancamento.Size = new System.Drawing.Size(112, 46);
             this.btnRegistrarLancamento.TabIndex = 2;
@@ -309,11 +313,60 @@
             this.lblQuantidade.Text = "Quantidade:";
             this.lblQuantidade.Visible = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(30, 283);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 17);
+            this.label4.TabIndex = 123;
+            this.label4.Text = "Fazenda:";
+            // 
+            // comboFazenda
+            // 
+            this.comboFazenda.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboFazenda.FormattingEnabled = true;
+            this.comboFazenda.Items.AddRange(new object[] {
+            "Produção",
+            "Transferência"});
+            this.comboFazenda.Location = new System.Drawing.Point(33, 303);
+            this.comboFazenda.Name = "comboFazenda";
+            this.comboFazenda.Size = new System.Drawing.Size(171, 28);
+            this.comboFazenda.TabIndex = 122;
+            this.comboFazenda.SelectedIndexChanged += new System.EventHandler(this.comboFazenda_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(30, 347);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(27, 17);
+            this.label5.TabIndex = 125;
+            this.label5.Text = "PL:";
+            // 
+            // comboPL
+            // 
+            this.comboPL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboPL.FormattingEnabled = true;
+            this.comboPL.Items.AddRange(new object[] {
+            "Produção",
+            "Transferência"});
+            this.comboPL.Location = new System.Drawing.Point(33, 367);
+            this.comboPL.Name = "comboPL";
+            this.comboPL.Size = new System.Drawing.Size(171, 28);
+            this.comboPL.TabIndex = 124;
+            // 
             // ScreenRegistrarEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(440, 358);
+            this.ClientSize = new System.Drawing.Size(440, 411);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.comboPL);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboFazenda);
             this.Controls.Add(this.numValor);
             this.Controls.Add(this.lblQuantidade);
             this.Controls.Add(this.numComercial);
@@ -339,6 +392,7 @@
             this.Name = "ScreenRegistrarEstoque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar Estoque | TerraCode";
+            this.Load += new System.EventHandler(this.ScreenRegistrarEstoque_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numExtra)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numEspecial)).EndInit();
@@ -373,5 +427,9 @@
         private System.Windows.Forms.Label lblComercial;
         private System.Windows.Forms.NumericUpDown numValor;
         private System.Windows.Forms.Label lblQuantidade;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox comboFazenda;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboPL;
     }
 }

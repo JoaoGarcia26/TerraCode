@@ -2,6 +2,7 @@
 using System.Data;
 using System.Linq;
 using System.Windows.Forms;
+using TerraCode.View.Fazendas;
 
 namespace TerraCode.View
 {
@@ -10,6 +11,7 @@ namespace TerraCode.View
         private ScreenCriarFazendas _formCriarFazendas;
         private ScreenCriarPL _formCriarPl;
         private ScreenPls _formListarPl;
+        private ScreenCriarSafra _formCriarSafra;
         public ScreenFazendas()
         {
             InitializeComponent();
@@ -64,13 +66,19 @@ namespace TerraCode.View
 
         private void btnAddFazenda_Click(object sender, EventArgs e)
         {
-            _formCriarFazendas = new ScreenCriarFazendas();
+            if (_formCriarFazendas == null || _formCriarFazendas.IsDisposed)
+            {
+                _formCriarFazendas = new ScreenCriarFazendas();
+            }
             _formCriarFazendas.ShowDialog();
         }
 
         private void btnPL_Click(object sender, EventArgs e)
         {
-            _formCriarPl = new ScreenCriarPL();
+            if (_formCriarPl == null || _formCriarPl.IsDisposed)
+            {
+                _formCriarPl = new ScreenCriarPL();
+            }
             _formCriarPl.ShowDialog();
         }
 
@@ -91,8 +99,20 @@ namespace TerraCode.View
 
         private void btnListarPls_Click(object sender, EventArgs e)
         {
-            _formListarPl = new ScreenPls();
+            if (_formListarPl == null || _formListarPl.IsDisposed)
+            {
+                _formListarPl = new ScreenPls();
+            }
             _formListarPl.ShowDialog();
+        }
+
+        private void btnSafra_Click(object sender, EventArgs e)
+        {
+            if (_formCriarSafra == null || _formCriarSafra.IsDisposed)
+            {
+                _formCriarSafra = new ScreenCriarSafra();
+            }
+            _formCriarSafra.ShowDialog();
         }
     }
 }

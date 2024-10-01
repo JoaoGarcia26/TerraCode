@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using TerraCode.Model;
 using TerraCode.Service;
 
 namespace TerraCode.View.Estoque.Movimentacoes
@@ -8,67 +7,83 @@ namespace TerraCode.View.Estoque.Movimentacoes
     public partial class ScreenEditarMovimentacao : Form
     {
         private EstoqueService _estoqueService;
+        private FazendaService _fazendaService;
+        private PLService _plService;
+
         private string numDoc;
-        private int id;
+        private int idMovimentacao;
+        private int FazendaId;
+        private int PLId;
         public ScreenEditarMovimentacao(string numDoc)
         {
             InitializeComponent();
             _estoqueService = new EstoqueService();
+            _fazendaService = new FazendaService();
+            _plService = new PLService();
             this.numDoc = numDoc;
         }
 
         private void ScreenEditarMovimentacao_Load(object sender, EventArgs e)
         {
             CarregaCampos();
-            data.Enabled = false;
+            txtData.Enabled = false;
+            txtNumDoc.Enabled = false;
+            txtEvento.Enabled = false;
         }
 
         public void CarregaCampos()
         {
             var resultadoMovimentacao = _estoqueService.RetornaEstoquePorNumDoc(numDoc);
+            var fazenda = _fazendaService.RetornaFazendaPeloId(resultadoMovimentacao.Conteudo.FazendaId);
+            var pl = _plService.RetornaPlPeloID(resultadoMovimentacao.Conteudo.PLId);
 
             if (resultadoMovimentacao.Sucesso)
             {
-                this.id = resultadoMovimentacao.Conteudo.ID;
+                idMovimentacao = resultadoMovimentacao.Conteudo.ID;
                 txtNumDoc.Text = resultadoMovimentacao.Conteudo.DocNr;
-                data.Value = resultadoMovimentacao.Conteudo.Data;
+                txtData.Text = resultadoMovimentacao.Conteudo.Data.ToShortDateString();
                 txtEvento.Text = resultadoMovimentacao.Conteudo.Evento;
+                lblFazenda.Text = fazenda.Conteudo.Nome;
+                lblPL.Text = $"Plantio: {pl.Conteudo.Nome}";
 
-                numExtra8.Value = resultadoMovimentacao.Conteudo.Extra8;
-                numExtra7.Value = resultadoMovimentacao.Conteudo.Extra7;
-                numExtra6.Value = resultadoMovimentacao.Conteudo.Extra6;
-                numExtra5.Value = resultadoMovimentacao.Conteudo.Extra5;
-                numExtra4.Value = resultadoMovimentacao.Conteudo.Extra4;
+                FazendaId = fazenda.Conteudo.Id;
+                PLId = pl.Conteudo.Id;
 
-                numCat8.Value = resultadoMovimentacao.Conteudo.Cat8;
-                numCat7.Value = resultadoMovimentacao.Conteudo.Cat7;
-                numCat6.Value = resultadoMovimentacao.Conteudo.Cat6;
-                numCat5.Value = resultadoMovimentacao.Conteudo.Cat5;
-                numCat4.Value = resultadoMovimentacao.Conteudo.Cat4;
+                numExtra8.Value = (decimal)resultadoMovimentacao.Conteudo.Extra8;
+                numExtra7.Value = (decimal)resultadoMovimentacao.Conteudo.Extra7;
+                numExtra6.Value = (decimal)resultadoMovimentacao.Conteudo.Extra6;
+                numExtra5.Value = (decimal)resultadoMovimentacao.Conteudo.Extra5;
+                numExtra4.Value = (decimal)resultadoMovimentacao.Conteudo.Extra4;
 
-                numComercial8.Value = resultadoMovimentacao.Conteudo.Comercial8;
-                numComercial7.Value = resultadoMovimentacao.Conteudo.Comercial7;
-                numComercial6.Value = resultadoMovimentacao.Conteudo.Comercial6;
-                numComercial5.Value = resultadoMovimentacao.Conteudo.Comercial5;
-                numComercial4.Value = resultadoMovimentacao.Conteudo.Comercial4;
+                numCat8.Value = (decimal)resultadoMovimentacao.Conteudo.Cat8;
+                numCat7.Value = (decimal)resultadoMovimentacao.Conteudo.Cat7;
+                numCat6.Value = (decimal)resultadoMovimentacao.Conteudo.Cat6;
+                numCat5.Value = (decimal)resultadoMovimentacao.Conteudo.Cat5;
+                numCat4.Value = (decimal)resultadoMovimentacao.Conteudo.Cat4;
 
-                numEspecial8.Value = resultadoMovimentacao.Conteudo.Especial8;
-                numEspecial7.Value = resultadoMovimentacao.Conteudo.Especial7;
-                numEspecial6.Value = resultadoMovimentacao.Conteudo.Especial6;
-                numEspecial5.Value = resultadoMovimentacao.Conteudo.Especial5;
-                numEspecial4.Value = resultadoMovimentacao.Conteudo.Especial4;
+                numComercial8.Value = (decimal)resultadoMovimentacao.Conteudo.Comercial8;
+                numComercial7.Value = (decimal)resultadoMovimentacao.Conteudo.Comercial7;
+                numComercial6.Value = (decimal)resultadoMovimentacao.Conteudo.Comercial6;
+                numComercial5.Value = (decimal)resultadoMovimentacao.Conteudo.Comercial5;
+                numComercial4.Value = (decimal)resultadoMovimentacao.Conteudo.Comercial4;
 
-                numEscovado8.Value = resultadoMovimentacao.Conteudo.Escovado8;
-                numEscovado7.Value = resultadoMovimentacao.Conteudo.Escovado7;
-                numEscovado6.Value = resultadoMovimentacao.Conteudo.Escovado6;
-                numEscovado5.Value = resultadoMovimentacao.Conteudo.Escovado5;
-                numEscovado4.Value = resultadoMovimentacao.Conteudo.Escovado4;
+                numEspecial8.Value = (decimal)resultadoMovimentacao.Conteudo.Especial8;
+                numEspecial7.Value = (decimal)resultadoMovimentacao.Conteudo.Especial7;
+                numEspecial6.Value = (decimal)resultadoMovimentacao.Conteudo.Especial6;
+                numEspecial5.Value = (decimal)resultadoMovimentacao.Conteudo.Especial5;
+                numEspecial4.Value = (decimal)resultadoMovimentacao.Conteudo.Especial4;
 
-                numEscovado3.Value = resultadoMovimentacao.Conteudo.Escovado3;
-                numIndustrial.Value = resultadoMovimentacao.Conteudo.Industrial20kg;
-                num2_3.Value = resultadoMovimentacao.Conteudo.Escovado2_3;
-                numDente.Value = resultadoMovimentacao.Conteudo.Dente20kg;
-                numBorrado.Value = resultadoMovimentacao.Conteudo.Borrado20kg;
+                numEscovado8.Value = (decimal)resultadoMovimentacao.Conteudo.Escovado8;
+                numEscovado7.Value = (decimal)resultadoMovimentacao.Conteudo.Escovado7;
+                numEscovado6.Value = (decimal)resultadoMovimentacao.Conteudo.Escovado6;
+                numEscovado5.Value = (decimal)resultadoMovimentacao.Conteudo.Escovado5;
+                numEscovado4.Value = (decimal)resultadoMovimentacao.Conteudo.Escovado4;
+
+                numEscovado3.Value = (decimal)resultadoMovimentacao.Conteudo.Escovado3;
+                numIndustrial.Value = (decimal)resultadoMovimentacao.Conteudo.Industrial20kg;
+                num2_3.Value = (decimal)resultadoMovimentacao.Conteudo.Escovado2_3;
+                numDente.Value = (decimal)resultadoMovimentacao.Conteudo.Dente20kg;
+                numBorrado.Value = (decimal)resultadoMovimentacao.Conteudo.Borrado20kg;
             } else
             {
                 MessageBox.Show(resultadoMovimentacao.MensagemErro, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -79,8 +94,8 @@ namespace TerraCode.View.Estoque.Movimentacoes
         {
             Model.Estoque estoqueAtualizado = new Model.Estoque
             {
-                ID = id,
-                Data = data.Value,
+                ID = idMovimentacao,
+                Data = DateTime.Parse(txtData.Text),
                 DocNr = numDoc,
                 Evento = txtEvento.Text,
 
@@ -119,6 +134,8 @@ namespace TerraCode.View.Estoque.Movimentacoes
                 Escovado2_3 = (int)num2_3.Value,
                 Dente20kg = (int)numDente.Value,
                 Borrado20kg = (int)numBorrado.Value,
+                FazendaId = this.FazendaId,
+                PLId = this.PLId
             };
 
             var resultado = _estoqueService.AtualizarEstoque(estoqueAtualizado);

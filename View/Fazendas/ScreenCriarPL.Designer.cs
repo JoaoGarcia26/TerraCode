@@ -41,6 +41,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.comboNomeFaz = new System.Windows.Forms.ComboBox();
             this.txtDataPlantio = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comboSafra = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label4
@@ -58,7 +60,7 @@
             this.txtObservacoes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtObservacoes.Location = new System.Drawing.Point(34, 170);
             this.txtObservacoes.Name = "txtObservacoes";
-            this.txtObservacoes.Size = new System.Drawing.Size(578, 26);
+            this.txtObservacoes.Size = new System.Drawing.Size(245, 26);
             this.txtObservacoes.TabIndex = 5;
             // 
             // label2
@@ -133,32 +135,55 @@
             this.label6.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(364, 26);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(135, 17);
+            this.label6.Size = new System.Drawing.Size(70, 17);
             this.label6.TabIndex = 37;
-            this.label6.Text = "Nome da Fazenda:";
+            this.label6.Text = "Fazenda:";
             // 
             // comboNomeFaz
             // 
+            this.comboNomeFaz.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboNomeFaz.FormattingEnabled = true;
             this.comboNomeFaz.Location = new System.Drawing.Point(367, 46);
             this.comboNomeFaz.Name = "comboNomeFaz";
-            this.comboNomeFaz.Size = new System.Drawing.Size(245, 24);
+            this.comboNomeFaz.Size = new System.Drawing.Size(245, 28);
             this.comboNomeFaz.TabIndex = 2;
             // 
             // txtDataPlantio
             // 
+            this.txtDataPlantio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataPlantio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.txtDataPlantio.Location = new System.Drawing.Point(367, 113);
             this.txtDataPlantio.Name = "txtDataPlantio";
-            this.txtDataPlantio.Size = new System.Drawing.Size(245, 22);
+            this.txtDataPlantio.Size = new System.Drawing.Size(245, 27);
             this.txtDataPlantio.TabIndex = 4;
             this.txtDataPlantio.Value = new System.DateTime(2024, 8, 23, 0, 0, 0, 0);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(364, 151);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 17);
+            this.label3.TabIndex = 40;
+            this.label3.Text = "Safra:";
+            // 
+            // comboSafra
+            // 
+            this.comboSafra.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboSafra.FormattingEnabled = true;
+            this.comboSafra.Location = new System.Drawing.Point(367, 170);
+            this.comboSafra.Name = "comboSafra";
+            this.comboSafra.Size = new System.Drawing.Size(245, 28);
+            this.comboSafra.TabIndex = 41;
             // 
             // ScreenCriarPL
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(644, 287);
+            this.Controls.Add(this.comboSafra);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.txtDataPlantio);
             this.Controls.Add(this.comboNomeFaz);
             this.Controls.Add(this.label5);
@@ -195,5 +220,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox comboNomeFaz;
         private System.Windows.Forms.DateTimePicker txtDataPlantio;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboSafra;
     }
 }

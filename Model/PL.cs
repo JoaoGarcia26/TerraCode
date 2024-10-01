@@ -7,9 +7,11 @@ namespace TerraCode.Model
         public int Id { get; set; }
         public string Nome { get; set; }
         public int FazendaId { get; set; }
+        public int IdSafra { get; set; }
         public string DataDoPlantio { get; set; }
         public double HectarePlantados { get; set; }
         public string Observacoes { get; set; }
         public Fazenda Fazenda { get; set; }
+        public Safra Safra { get; set; }
     }
 }

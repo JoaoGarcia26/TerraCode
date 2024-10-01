@@ -8,11 +8,13 @@ namespace TerraCode.View
     {
         private PLService _plService;
         private FazendaService _fazendaService;
+        private SafraService _safraService;
         public ScreenCriarPL()
         {
             InitializeComponent();
             _plService = new PLService();
             _fazendaService = new FazendaService();
+            _safraService = new SafraService();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -25,7 +27,7 @@ namespace TerraCode.View
             float hectare;
             if (float.TryParse(txtAreaPlantada2.Text, out hectare))
             {
-                var resultado = _plService.CriarPL(txtNomePl.Text, comboNomeFaz.SelectedItem?.ToString(), txtDataPlantio.Text, hectare, txtObservacoes.Text);
+                var resultado = _plService.CriarPL(txtNomePl.Text, comboNomeFaz.SelectedItem?.ToString(), txtDataPlantio.Text, hectare, txtObservacoes.Text, comboSafra.SelectedItem.ToString());
 
                 if (resultado.Sucesso)
                 {
@@ -45,17 +47,29 @@ namespace TerraCode.View
 
         private void ScreenCriarPL_Load(object sender, EventArgs e)
         {
-            var resultado = _fazendaService.RetornaTodasFazendas();
+            var resultadoFazenda = _fazendaService.RetornaTodasFazendas();
+            var resultadoSafra = _safraService.RetornaTodasSafras();
 
-            if (resultado.Sucesso)
+            if (resultadoFazenda.Sucesso)
             {
-                foreach (var item in resultado.Conteudo) 
+                foreach (var item in resultadoFazenda.Conteudo) 
                 {
                     comboNomeFaz.Items.Add(item.Nome);
                 }
             } else
             {
                 MessageBox.Show("Não há fazendas cadastradas.");
+            }
+            if (resultadoSafra.Sucesso)
+            {
+                foreach (var item in resultadoSafra.Conteudo)
+                {
+                    comboSafra.Items.Add(item.Nome);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Não há safras cadastradas.");
             }
         }
     }

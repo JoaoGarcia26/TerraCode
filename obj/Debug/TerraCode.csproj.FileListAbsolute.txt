@@ -34,3 +34,4 @@ C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.csproj.Core
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.csproj.CopyComplete
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.exe
 C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.pdb
+C:\Users\João Victor\Documents\GitHub\TerraCode\obj\Debug\TerraCode.View.Fazendas.ScreenCriarSafra.resources

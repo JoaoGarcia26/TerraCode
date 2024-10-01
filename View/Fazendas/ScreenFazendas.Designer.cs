@@ -41,6 +41,7 @@
             this.pLsTableAdapter = new TerraCode.dbTerraCodeDataSetTableAdapters.PLsTableAdapter();
             this.btnPL = new System.Windows.Forms.Button();
             this.btnListarPls = new System.Windows.Forms.Button();
+            this.btnSafra = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTerraCodeDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.fazendasBindingSource)).BeginInit();
@@ -130,11 +131,22 @@
             this.btnListarPls.UseVisualStyleBackColor = true;
             this.btnListarPls.Click += new System.EventHandler(this.btnListarPls_Click);
             // 
+            // btnSafra
+            // 
+            this.btnSafra.Location = new System.Drawing.Point(340, 375);
+            this.btnSafra.Name = "btnSafra";
+            this.btnSafra.Size = new System.Drawing.Size(114, 52);
+            this.btnSafra.TabIndex = 8;
+            this.btnSafra.Text = "Cadastrar Safra";
+            this.btnSafra.UseVisualStyleBackColor = true;
+            this.btnSafra.Click += new System.EventHandler(this.btnSafra_Click);
+            // 
             // ScreenFazendas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnSafra);
             this.Controls.Add(this.btnListarPls);
             this.Controls.Add(this.btnPL);
             this.Controls.Add(this.btnAddFazenda);
@@ -169,5 +181,6 @@
         private dbTerraCodeDataSetTableAdapters.PLsTableAdapter pLsTableAdapter;
         private System.Windows.Forms.Button btnPL;
         private System.Windows.Forms.Button btnListarPls;
+        private System.Windows.Forms.Button btnSafra;
     }
 }

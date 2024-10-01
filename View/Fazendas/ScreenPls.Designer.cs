@@ -120,6 +120,7 @@
             this.Name = "ScreenPls";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PL\'s | TerraCode";
+            this.Activated += new System.EventHandler(this.ScreenPls_Activated);
             this.Load += new System.EventHandler(this.ScreenPls_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dbTerraCodeDataSet)).EndInit();

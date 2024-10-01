@@ -8,10 +8,14 @@ namespace TerraCode.View.Estoque
     public partial class ScreenRegistrarEstoque : Form
     {
         private EstoqueService _estoqueService;
+        private PLService _plService;
+        private FazendaService _fazendaService;
         public ScreenRegistrarEstoque()
         {
             InitializeComponent();
             _estoqueService = new EstoqueService();
+            _plService = new PLService();
+            _fazendaService = new FazendaService();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,7 +155,10 @@ namespace TerraCode.View.Estoque
                 };
             }
 
-            var resultado = _estoqueService.CriarEstoque(dataEntrada.Value, comboEvento.SelectedItem.ToString(), txtNumDoc.Text, classificacoesPorTipo);
+            var fazendaSelecionada = _fazendaService.RetornaFazendaPeloNome(comboFazenda.SelectedItem.ToString());
+            var plSelecionado = _plService.RetornaPlPeloNomeeFazenda(comboPL.SelectedItem.ToString(), fazendaSelecionada.Conteudo.Nome);
+
+            var resultado = _estoqueService.CriarEstoque(dataEntrada.Value, comboEvento.SelectedItem.ToString(), txtNumDoc.Text, fazendaSelecionada.Conteudo.Id, plSelecionado.Conteudo.Id, classificacoesPorTipo);
 
             if (resultado.Sucesso)
             {
@@ -161,6 +168,38 @@ namespace TerraCode.View.Estoque
             else
             {
                 MessageBox.Show($"Erro ao criar estoque: {resultado.MensagemErro}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ScreenRegistrarEstoque_Load(object sender, EventArgs e)
+        {
+            var resultadoFazendas = _fazendaService.RetornaTodasFazendas();
+            comboFazenda.Items.Clear();
+            if (resultadoFazendas.Sucesso)
+            {
+                foreach (var item in resultadoFazendas.Conteudo)
+                {
+                    comboFazenda.Items.Add(item.Nome);
+                }
+            } else
+            {
+                MessageBox.Show(resultadoFazendas.MensagemErro, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void comboFazenda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var resultadoPL = _plService.RetornaTodosPlDaFazenda(comboFazenda.SelectedItem.ToString());
+            comboPL.Items.Clear();
+            if (resultadoPL.Sucesso)
+            {
+                foreach (var item in resultadoPL.Conteudo)
+                {
+                    comboPL.Items.Add(item.Nome);
+                }
+            } else
+            {
+                MessageBox.Show(resultadoPL.MensagemErro, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

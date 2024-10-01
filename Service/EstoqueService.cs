@@ -15,7 +15,7 @@ namespace TerraCode.Service
             _estoqueRepository = new EstoqueRepository();
         }
 
-        public ResultadoOperacao CriarEstoque(DateTime data, string evento, string docNr, Dictionary<string, Dictionary<string, int>> classificacoesPorTipo)
+        public ResultadoOperacao CriarEstoque(DateTime data, string evento, string docNr, int fazendaId, int plId, Dictionary<string, Dictionary<string, int>> classificacoesPorTipo)
         {
             if (string.IsNullOrEmpty(evento))
             {
@@ -31,7 +31,9 @@ namespace TerraCode.Service
             {
                 Data = data,
                 Evento = evento,
-                DocNr = docNr
+                DocNr = docNr,
+                FazendaId = fazendaId,
+                PLId = plId
             };
 
             foreach (var tipoClassificacao in classificacoesPorTipo)
@@ -96,7 +98,6 @@ namespace TerraCode.Service
                 }
             }
 
-            // Salva no repositório
             bool sucesso = _estoqueRepository.CreateEstoque(estoque);
             return new ResultadoOperacao
             {
@@ -118,7 +119,7 @@ namespace TerraCode.Service
 
         public ResultadoOperacaoComConteudo<List<Estoque>> RetornaEstoqueFiltrado(DateTime? dataInicial = null, DateTime? dataFinal = null, string evento = null, string documento = null)
         {
-            List<Estoque> estoques = _estoqueRepository.RetornaEstoquesFiltrado(dataInicial, dataFinal, evento, documento);
+            List<Estoque> estoques = _estoqueRepository.RetornaEstoquesFiltrado(dataInicial, dataFinal, evento, documento, null, null, null);
             return new ResultadoOperacaoComConteudo<List<Estoque>>
             {
                 Sucesso = true,
@@ -166,41 +167,125 @@ namespace TerraCode.Service
 
             foreach (var estoque in todosEstoques)
             {
-                estoqueGeral["Extra 8"] += estoque.Extra8;
-                estoqueGeral["Cat 8"] += estoque.Cat8;
-                estoqueGeral["Especial 8"] += estoque.Especial8;
-                estoqueGeral["Escovado 8"] += estoque.Escovado8;
-                estoqueGeral["Comercial 8"] += estoque.Comercial8;
+                estoqueGeral["Extra 8"] += estoque.Extra8 ?? 0;
+                estoqueGeral["Cat 8"] += estoque.Cat8 ?? 0;
+                estoqueGeral["Especial 8"] += estoque.Especial8 ?? 0;
+                estoqueGeral["Escovado 8"] += estoque.Escovado8 ?? 0;
+                estoqueGeral["Comercial 8"] += estoque.Comercial8 ?? 0;
 
-                estoqueGeral["Extra 7"] += estoque.Extra7;
-                estoqueGeral["Cat 7"] += estoque.Cat7;
-                estoqueGeral["Especial 7"] += estoque.Especial7;
-                estoqueGeral["Escovado 7"] += estoque.Escovado7;
-                estoqueGeral["Comercial 7"] += estoque.Comercial7;
+                estoqueGeral["Extra 7"] += estoque.Extra7 ?? 0;
+                estoqueGeral["Cat 7"] += estoque.Cat7 ?? 0;
+                estoqueGeral["Especial 7"] += estoque.Especial7 ?? 0;
+                estoqueGeral["Escovado 7"] += estoque.Escovado7 ?? 0;
+                estoqueGeral["Comercial 7"] += estoque.Comercial7 ?? 0;
 
-                estoqueGeral["Extra 6"] += estoque.Extra6;
-                estoqueGeral["Cat 6"] += estoque.Cat6;
-                estoqueGeral["Especial 6"] += estoque.Especial6;
-                estoqueGeral["Escovado 6"] += estoque.Escovado6;
-                estoqueGeral["Comercial 6"] += estoque.Comercial6;
+                estoqueGeral["Extra 6"] += estoque.Extra6 ?? 0;
+                estoqueGeral["Cat 6"] += estoque.Cat6 ?? 0;
+                estoqueGeral["Especial 6"] += estoque.Especial6 ?? 0;
+                estoqueGeral["Escovado 6"] += estoque.Escovado6 ?? 0;
+                estoqueGeral["Comercial 6"] += estoque.Comercial6 ?? 0;
 
-                estoqueGeral["Extra 5"] += estoque.Extra5;
-                estoqueGeral["Cat 5"] += estoque.Cat5;
-                estoqueGeral["Especial 5"] += estoque.Especial5;
-                estoqueGeral["Escovado 5"] += estoque.Escovado5;
-                estoqueGeral["Comercial 5"] += estoque.Comercial5;
+                estoqueGeral["Extra 5"] += estoque.Extra5 ?? 0;
+                estoqueGeral["Cat 5"] += estoque.Cat5 ?? 0;
+                estoqueGeral["Especial 5"] += estoque.Especial5 ?? 0;
+                estoqueGeral["Escovado 5"] += estoque.Escovado5 ?? 0;
+                estoqueGeral["Comercial 5"] += estoque.Comercial5 ?? 0;
 
-                estoqueGeral["Extra 4"] += estoque.Extra4;
-                estoqueGeral["Cat 4"] += estoque.Cat4;
-                estoqueGeral["Especial 4"] += estoque.Especial4;
-                estoqueGeral["Escovado 4"] += estoque.Escovado4;
-                estoqueGeral["Comercial 4"] += estoque.Comercial4;
+                estoqueGeral["Extra 4"] += estoque.Extra4 ?? 0;
+                estoqueGeral["Cat 4"] += estoque.Cat4 ?? 0;
+                estoqueGeral["Especial 4"] += estoque.Especial4 ?? 0;
+                estoqueGeral["Escovado 4"] += estoque.Escovado4 ?? 0;
+                estoqueGeral["Comercial 4"] += estoque.Comercial4 ?? 0;
 
-                estoqueGeral["Escovado 3"] += estoque.Escovado3;
-                estoqueGeral["Borrado 20kg"] += estoque.Borrado20kg;
-                estoqueGeral["Escovado 2/3"] += estoque.Escovado2_3;
-                estoqueGeral["Industrial 20kg"] += estoque.Industrial20kg;
-                estoqueGeral["Dente 20kg"] += estoque.Dente20kg;
+                estoqueGeral["Escovado 3"] += estoque.Escovado3 ?? 0;
+                estoqueGeral["Borrado 20kg"] += estoque.Borrado20kg ?? 0;
+                estoqueGeral["Escovado 2/3"] += estoque.Escovado2_3 ?? 0;
+                estoqueGeral["Industrial 20kg"] += estoque.Industrial20kg ?? 0;
+                estoqueGeral["Dente 20kg"] += estoque.Dente20kg ?? 0;
+            }
+
+            return new ResultadoOperacaoComConteudo<Dictionary<string, int>>
+            {
+                Sucesso = true,
+                MensagemErro = "Ok",
+                Conteudo = estoqueGeral
+            };
+        }
+
+        public ResultadoOperacaoComConteudo<Dictionary<string, int>> GetEstoqueGeralPorFazendaEPL(int? fazendaId = null, int? plId = null, int? safraId = null)
+        {
+            var todosEstoques = _estoqueRepository.RetornaEstoquesFiltrado(null, null, null, null, fazendaId, plId, safraId);
+            var estoqueGeral = new Dictionary<string, int>
+            {
+                { "Extra 8", 0 },
+                { "Cat 8", 0 },
+                { "Especial 8", 0 },
+                { "Escovado 8", 0 },
+                { "Comercial 8", 0 },
+                { "Extra 7", 0 },
+                { "Cat 7", 0 },
+                { "Especial 7", 0 },
+                { "Escovado 7", 0 },
+                { "Comercial 7", 0 },
+                { "Extra 6", 0 },
+                { "Cat 6", 0 },
+                { "Especial 6", 0 },
+                { "Escovado 6", 0 },
+                { "Comercial 6", 0 },
+                { "Extra 5", 0 },
+                { "Cat 5", 0 },
+                { "Especial 5", 0 },
+                { "Escovado 5", 0 },
+                { "Comercial 5", 0 },
+                { "Extra 4", 0 },
+                { "Cat 4", 0 },
+                { "Especial 4", 0 },
+                { "Escovado 4", 0 },
+                { "Comercial 4", 0 },
+                { "Escovado 3", 0 },
+                { "Borrado 20kg", 0 },
+                { "Escovado 2/3", 0 },
+                { "Industrial 20kg", 0 },
+                { "Dente 20kg", 0 }
+            };
+
+            foreach (var estoque in todosEstoques)
+            {
+                estoqueGeral["Extra 8"] += estoque.Extra8 ?? 0;
+                estoqueGeral["Cat 8"] += estoque.Cat8 ?? 0;
+                estoqueGeral["Especial 8"] += estoque.Especial8 ?? 0;
+                estoqueGeral["Escovado 8"] += estoque.Escovado8 ?? 0;
+                estoqueGeral["Comercial 8"] += estoque.Comercial8 ?? 0;
+
+                estoqueGeral["Extra 7"] += estoque.Extra7 ?? 0;
+                estoqueGeral["Cat 7"] += estoque.Cat7 ?? 0;
+                estoqueGeral["Especial 7"] += estoque.Especial7 ?? 0;
+                estoqueGeral["Escovado 7"] += estoque.Escovado7 ?? 0;
+                estoqueGeral["Comercial 7"] += estoque.Comercial7 ?? 0;
+
+                estoqueGeral["Extra 6"] += estoque.Extra6 ?? 0;
+                estoqueGeral["Cat 6"] += estoque.Cat6 ?? 0;
+                estoqueGeral["Especial 6"] += estoque.Especial6 ?? 0;
+                estoqueGeral["Escovado 6"] += estoque.Escovado6 ?? 0;
+                estoqueGeral["Comercial 6"] += estoque.Comercial6 ?? 0;
+
+                estoqueGeral["Extra 5"] += estoque.Extra5 ?? 0;
+                estoqueGeral["Cat 5"] += estoque.Cat5 ?? 0;
+                estoqueGeral["Especial 5"] += estoque.Especial5 ?? 0;
+                estoqueGeral["Escovado 5"] += estoque.Escovado5 ?? 0;
+                estoqueGeral["Comercial 5"] += estoque.Comercial5 ?? 0;
+
+                estoqueGeral["Extra 4"] += estoque.Extra4 ?? 0;
+                estoqueGeral["Cat 4"] += estoque.Cat4 ?? 0;
+                estoqueGeral["Especial 4"] += estoque.Especial4 ?? 0;
+                estoqueGeral["Escovado 4"] += estoque.Escovado4 ?? 0;
+                estoqueGeral["Comercial 4"] += estoque.Comercial4 ?? 0;
+
+                estoqueGeral["Escovado 3"] += estoque.Escovado3 ?? 0;
+                estoqueGeral["Borrado 20kg"] += estoque.Borrado20kg ?? 0;
+                estoqueGeral["Escovado 2/3"] += estoque.Escovado2_3 ?? 0;
+                estoqueGeral["Industrial 20kg"] += estoque.Industrial20kg ?? 0;
+                estoqueGeral["Dente 20kg"] += estoque.Dente20kg ?? 0;
             }
 
             return new ResultadoOperacaoComConteudo<Dictionary<string, int>>

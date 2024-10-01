@@ -41,7 +41,6 @@
             this.txtNumDoc = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.data = new System.Windows.Forms.DateTimePicker();
             this.num2_3 = new System.Windows.Forms.NumericUpDown();
             this.numBorrado = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
@@ -103,6 +102,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtEvento = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
+            this.txtData = new System.Windows.Forms.TextBox();
+            this.lblFazenda = new System.Windows.Forms.Label();
+            this.lblPL = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numComercial8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numIndustrial)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCat8)).BeginInit();
@@ -232,7 +234,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(214, 16);
+            this.label3.Location = new System.Drawing.Point(173, 16);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(133, 17);
             this.label3.TabIndex = 130;
@@ -241,10 +243,10 @@
             // txtNumDoc
             // 
             this.txtNumDoc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumDoc.Location = new System.Drawing.Point(217, 38);
+            this.txtNumDoc.Location = new System.Drawing.Point(176, 38);
             this.txtNumDoc.Name = "txtNumDoc";
             this.txtNumDoc.ReadOnly = true;
-            this.txtNumDoc.Size = new System.Drawing.Size(171, 27);
+            this.txtNumDoc.Size = new System.Drawing.Size(143, 27);
             this.txtNumDoc.TabIndex = 129;
             // 
             // label7
@@ -259,25 +261,13 @@
             // 
             // btnEditar
             // 
-            this.btnEditar.Location = new System.Drawing.Point(744, 30);
+            this.btnEditar.Location = new System.Drawing.Point(740, 30);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(112, 46);
+            this.btnEditar.Size = new System.Drawing.Size(116, 46);
             this.btnEditar.TabIndex = 123;
             this.btnEditar.Text = "Editar Movimentação";
             this.btnEditar.UseVisualStyleBackColor = true;
             this.btnEditar.Click += new System.EventHandler(this.btnEditar_Click);
-            // 
-            // data
-            // 
-            this.data.Enabled = false;
-            this.data.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.data.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.data.Location = new System.Drawing.Point(9, 38);
-            this.data.Name = "data";
-            this.data.ShowUpDown = true;
-            this.data.Size = new System.Drawing.Size(169, 27);
-            this.data.TabIndex = 122;
-            this.data.Value = new System.DateTime(2024, 9, 26, 19, 58, 57, 0);
             // 
             // num2_3
             // 
@@ -939,15 +929,17 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lblPL);
+            this.groupBox1.Controls.Add(this.lblFazenda);
+            this.groupBox1.Controls.Add(this.txtData);
             this.groupBox1.Controls.Add(this.txtEvento);
             this.groupBox1.Controls.Add(this.label35);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.data);
             this.groupBox1.Controls.Add(this.txtNumDoc);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(35, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(614, 77);
+            this.groupBox1.Size = new System.Drawing.Size(684, 77);
             this.groupBox1.TabIndex = 209;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informações:";
@@ -955,27 +947,56 @@
             // txtEvento
             // 
             this.txtEvento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEvento.Location = new System.Drawing.Point(430, 38);
+            this.txtEvento.Location = new System.Drawing.Point(345, 38);
             this.txtEvento.Name = "txtEvento";
             this.txtEvento.ReadOnly = true;
-            this.txtEvento.Size = new System.Drawing.Size(171, 27);
+            this.txtEvento.Size = new System.Drawing.Size(143, 27);
             this.txtEvento.TabIndex = 131;
             // 
             // label35
             // 
             this.label35.AutoSize = true;
             this.label35.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(427, 16);
+            this.label35.Location = new System.Drawing.Point(342, 16);
             this.label35.Name = "label35";
             this.label35.Size = new System.Drawing.Size(58, 17);
             this.label35.TabIndex = 132;
             this.label35.Text = "Evento:";
             // 
+            // txtData
+            // 
+            this.txtData.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtData.Location = new System.Drawing.Point(9, 38);
+            this.txtData.Name = "txtData";
+            this.txtData.ReadOnly = true;
+            this.txtData.Size = new System.Drawing.Size(143, 27);
+            this.txtData.TabIndex = 133;
+            // 
+            // lblFazenda
+            // 
+            this.lblFazenda.AutoSize = true;
+            this.lblFazenda.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFazenda.Location = new System.Drawing.Point(506, 18);
+            this.lblFazenda.Name = "lblFazenda";
+            this.lblFazenda.Size = new System.Drawing.Size(66, 17);
+            this.lblFazenda.TabIndex = 134;
+            this.lblFazenda.Text = "Fazenda";
+            // 
+            // lblPL
+            // 
+            this.lblPL.AutoSize = true;
+            this.lblPL.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPL.Location = new System.Drawing.Point(506, 44);
+            this.lblPL.Name = "lblPL";
+            this.lblPL.Size = new System.Drawing.Size(27, 17);
+            this.lblPL.TabIndex = 135;
+            this.lblPL.Text = "PL:";
+            // 
             // ScreenEditarMovimentacao
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 439);
+            this.ClientSize = new System.Drawing.Size(890, 439);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.label33);
@@ -1099,7 +1120,6 @@
         private System.Windows.Forms.TextBox txtNumDoc;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.DateTimePicker data;
         private System.Windows.Forms.NumericUpDown num2_3;
         private System.Windows.Forms.NumericUpDown numBorrado;
         private System.Windows.Forms.Label label1;
@@ -1161,5 +1181,8 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.TextBox txtEvento;
         private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.TextBox txtData;
+        private System.Windows.Forms.Label lblFazenda;
+        private System.Windows.Forms.Label lblPL;
     }
 }

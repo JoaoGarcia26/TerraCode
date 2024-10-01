@@ -78,6 +78,7 @@
     <Compile Include="Model\MovimentacaoProducaoRoca.cs" />
     <Compile Include="Model\PL.cs" />
     <Compile Include="Model\PreClassificacao.cs" />
+    <Compile Include="Model\Safra.cs" />
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Model\Veiculo.cs" />
     <Compile Include="Program.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="Repository\MovimentacaoProducaoRocaRepository.cs" />
     <Compile Include="Repository\PLRepository.cs" />
     <Compile Include="Repository\PreClassificacaoRepository.cs" />
+    <Compile Include="Repository\SafraRepository.cs" />
     <Compile Include="Repository\UsuarioRepository.cs" />
     <Compile Include="Repository\VeiculoRepository.cs" />
     <Compile Include="Service\CaixaService.cs" />
@@ -101,6 +103,7 @@
     <Compile Include="Service\PasswordService.cs" />
     <Compile Include="Service\PLService.cs" />
     <Compile Include="Service\PreClassificacaoService.cs" />
+    <Compile Include="Service\SafraService.cs" />
     <Compile Include="Service\UsuarioService.cs" />
     <Compile Include="Service\VeiculoService.cs" />
     <Compile Include="View\AlhoDaRoca\ScreenAlhoDaRoca.cs">
@@ -162,6 +165,12 @@
     </Compile>
     <Compile Include="View\Fazendas\ScreenCriarFazendas.Designer.cs">
       <DependentUpon>ScreenCriarFazendas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Fazendas\ScreenCriarSafra.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Fazendas\ScreenCriarSafra.Designer.cs">
+      <DependentUpon>ScreenCriarSafra.cs</DependentUpon>
     </Compile>
     <Compile Include="View\Motoristas\ScreenCriarMotorista.cs">
       <SubType>Form</SubType>
@@ -274,6 +283,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Fazendas\ScreenCriarFazendas.resx">
       <DependentUpon>ScreenCriarFazendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Fazendas\ScreenCriarSafra.resx">
+      <DependentUpon>ScreenCriarSafra.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\Motoristas\ScreenCriarMotorista.resx">
       <DependentUpon>ScreenCriarMotorista.cs</DependentUpon>
