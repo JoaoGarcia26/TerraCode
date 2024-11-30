@@ -20,13 +20,12 @@ namespace TerraCode.View
         private ScreenVeiculos _formVeiculos;
         private ScreenCriarVeiculos _formCriarVeiculos;
         private ScreenCaixas _formCaixas;
-        private ScreenRegistrarCaixas _formRegistrarCaixas;
         private ScreenAlhoDaRoca _formAlhoDaRoca;
-        private ScreenRegistrarEntrada _formRegistraAlhoDaRoca;
         private ScreenPreClassificacao _formClassificacao;
-        private ScreenRegistrarClassificacao _formRegistrarClassificacao;
         private ScreenEstoque _formEstoque;
         private ScreenVendas _formVendas;
+        private ScreenRegistrarEstoque _formRegistrarEstoque;
+        private ScreenRegistrarEntrada _formRegistrarEntradaAlhoDaRoca;
 
         public MenuGeral()
         {
@@ -207,6 +206,51 @@ namespace TerraCode.View
                 _formVendas = new ScreenVendas();
             }
             _formVendas.ShowDialog();
+        }
+
+        private void registrarEntradaToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            if (_formRegistrarEstoque == null || _formRegistrarEstoque.IsDisposed)
+            {
+                _formRegistrarEstoque = new ScreenRegistrarEstoque();
+            }
+            _formRegistrarEstoque.ShowDialog();
+        }
+
+        private void listarEstoqueToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_formEstoque == null || _formEstoque.IsDisposed)
+            {
+                _formEstoque = new ScreenEstoque();
+            }
+            _formEstoque.ShowDialog();
+        }
+
+        private void registrarEntradaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_formRegistrarEntradaAlhoDaRoca == null || _formRegistrarEntradaAlhoDaRoca.IsDisposed)
+            {
+                _formRegistrarEntradaAlhoDaRoca = new ScreenRegistrarEntrada();
+            }
+            _formRegistrarEntradaAlhoDaRoca.ShowDialog();
+        }
+
+        private void listarProduçãoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_formAlhoDaRoca == null || _formAlhoDaRoca.IsDisposed)
+            {
+                _formAlhoDaRoca = new ScreenAlhoDaRoca();
+            }
+            _formAlhoDaRoca.ShowDialog();
+        }
+
+        private void listarVeículosToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (_formVeiculos == null || _formVeiculos.IsDisposed)
+            {
+                _formVeiculos = new ScreenVeiculos();
+            }
+            _formVeiculos.ShowDialog();
         }
     }
 }

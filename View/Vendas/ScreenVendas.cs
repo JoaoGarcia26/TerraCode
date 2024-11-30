@@ -31,18 +31,18 @@ namespace TerraCode.View.Vendas
             dt.Columns.Add("CPF Motorista", typeof(string));
             dt.Columns.Add("Placa Veículo", typeof(string));
             dt.Columns.Add("Produto", typeof(string));
-            dt.Columns.Add("Quantidade Caixas", typeof(int));
+            dt.Columns.Add("Quantidade em Caixas", typeof(int));
 
             if (resultado.Sucesso && resultado.Conteudo != null && resultado.Conteudo.Count > 0)
             {
-                foreach (var item in resultado.Conteudo)
-                {
+                foreach(var item in resultado.Conteudo)
+{
                     dt.Rows.Add(
                         item.Data,
                         item.Comprador,
-                        item.Motorista ?? "Não informado",
-                        item.CPFMotorista ?? "Não informado",
-                        item.PlacaVeiculo ?? "Não informado",
+                        string.IsNullOrEmpty(item.Motorista) ? "Não informado" : item.Motorista,
+                        string.IsNullOrEmpty(item.CPFMotorista) ? "Não informado" : item.CPFMotorista,
+                        string.IsNullOrEmpty(item.PlacaVeiculo) ? "Não informado" : item.PlacaVeiculo,
                         item.Produto,
                         item.QuantidadeCaixas
                     );
@@ -62,7 +62,7 @@ namespace TerraCode.View.Vendas
             dataGridView1.Columns["CPF Motorista"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Placa Veículo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Produto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["Quantidade Caixas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns["Quantidade em Caixas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dataGridView1.Refresh();
         }
@@ -83,7 +83,7 @@ namespace TerraCode.View.Vendas
 
         private void ScreenVendas_Activated(object sender, EventArgs e)
         {
-            CarregaTabela();
+            //CarregaTabela();
         }
     }
 }

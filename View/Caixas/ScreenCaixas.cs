@@ -93,5 +93,10 @@ namespace TerraCode.View
         {
             ScreenCaixas_Load(sender, e);
         }
+
+        private void dataGridViewMovimentacaoCaixas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

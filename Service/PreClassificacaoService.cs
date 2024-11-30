@@ -49,7 +49,7 @@ namespace TerraCode.Service
                 return new ResultadoOperacao { Sucesso = false, MensagemErro = "Fazenda não encontrada." };
             }
 
-            var pl = _plService.RetornaPlPeloIDeFazenda(int.Parse(nomePL), nomeFazenda).Conteudo;
+            var pl = _plService.RetornaPlPeloNomeeFazenda(nomePL, nomeFazenda).Conteudo;
             if (pl == null)
             {
                 return new ResultadoOperacao { Sucesso = false, MensagemErro = "PL não encontrado." };

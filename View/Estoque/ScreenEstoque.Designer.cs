@@ -47,14 +47,16 @@
             this.lblSubTitulo = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.comboSafra = new System.Windows.Forms.ComboBox();
+            this.pnlGraficos = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.chartEstoque)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnVoltar
             // 
-            this.btnVoltar.Location = new System.Drawing.Point(49, 761);
+            this.btnVoltar.Location = new System.Drawing.Point(26, 688);
             this.btnVoltar.Name = "btnVoltar";
             this.btnVoltar.Size = new System.Drawing.Size(114, 52);
             this.btnVoltar.TabIndex = 18;
@@ -64,7 +66,7 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1169, 761);
+            this.button1.Location = new System.Drawing.Point(1195, 688);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(114, 52);
             this.button1.TabIndex = 19;
@@ -78,7 +80,7 @@
             this.chartEstoque.ChartAreas.Add(chartArea1);
             legend1.Name = "Legend1";
             this.chartEstoque.Legends.Add(legend1);
-            this.chartEstoque.Location = new System.Drawing.Point(12, 345);
+            this.chartEstoque.Location = new System.Drawing.Point(1, 273);
             this.chartEstoque.Name = "chartEstoque";
             this.chartEstoque.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             series1.ChartArea = "ChartArea1";
@@ -102,9 +104,9 @@
             // 
             // btnMovimentacoes
             // 
-            this.btnMovimentacoes.Location = new System.Drawing.Point(620, 761);
+            this.btnMovimentacoes.Location = new System.Drawing.Point(603, 688);
             this.btnMovimentacoes.Name = "btnMovimentacoes";
-            this.btnMovimentacoes.Size = new System.Drawing.Size(114, 52);
+            this.btnMovimentacoes.Size = new System.Drawing.Size(125, 52);
             this.btnMovimentacoes.TabIndex = 22;
             this.btnMovimentacoes.Text = "Ver Movimentações";
             this.btnMovimentacoes.UseVisualStyleBackColor = true;
@@ -112,10 +114,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.pnlGraficos);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 103);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1308, 236);
+            this.groupBox1.Size = new System.Drawing.Size(1308, 150);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Informações por PL:";
@@ -211,12 +214,19 @@
             this.comboSafra.TabIndex = 25;
             this.comboSafra.SelectedIndexChanged += new System.EventHandler(this.comboSafra_SelectedIndexChanged);
             // 
+            // pnlGraficos
+            // 
+            this.pnlGraficos.Location = new System.Drawing.Point(10, 24);
+            this.pnlGraficos.Name = "pnlGraficos";
+            this.pnlGraficos.Size = new System.Drawing.Size(1287, 121);
+            this.pnlGraficos.TabIndex = 0;
+            // 
             // ScreenEstoque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1332, 827);
+            this.ClientSize = new System.Drawing.Size(1332, 763);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.lblSubTitulo);
             this.Controls.Add(this.groupBox2);
@@ -233,6 +243,7 @@
             this.Activated += new System.EventHandler(this.ScreenEstoque_Activated);
             this.Load += new System.EventHandler(this.ScreenEstoque_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartEstoque)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -258,5 +269,6 @@
         private System.Windows.Forms.Label lblSubTitulo;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.ComboBox comboSafra;
+        private System.Windows.Forms.Panel pnlGraficos;
     }
 }

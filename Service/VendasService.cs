@@ -39,7 +39,7 @@ namespace TerraCode.Service
                 }
                 else
                 {
-                    return new ResultadoOperacao { Sucesso = false, MensagemErro = $"Estoque insuficiente para {tipoProduto}. Disponível: {quantidadeEstoque}, solicitado: {quantidadeVendida}." };
+                    return new ResultadoOperacao { Sucesso = false, MensagemErro = $"Estoque insuficiente para {tipoProduto}. Disponível: {quantidadeEstoque} KG, solicitado: {quantidadeVendida} KG." };
                 }
             }
 

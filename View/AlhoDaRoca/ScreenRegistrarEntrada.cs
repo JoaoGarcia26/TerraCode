@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using TerraCode.Service;
 
 namespace TerraCode.View.AlhoDaRoca
@@ -110,24 +111,70 @@ namespace TerraCode.View.AlhoDaRoca
             }
         }
 
-        private void btnRegistrar_Click(object sender, System.EventArgs e)
+        private void btnRegistrar_Click(object sender, EventArgs e)
         {
-            var motorista = _motoristaService.RetornaMotoristaPeloNome(comboMotorista.SelectedItem.ToString());
-            var veiculo = _veiculoService.RetornaVeiculoPelaPlaca(comboVeiculos.SelectedItem.ToString());
-            var fazenda = _fazendaService.RetornaFazendaPeloNome(comboFazenda.SelectedItem.ToString());
-            var pl = _plService.RetornaPlPeloIDeFazenda(int.Parse(comboPL.SelectedItem.ToString()), fazenda.Conteudo.Nome);
-
-            var resultadoMovimentacao = _movimentacaoProducaoRocaService.CriarMovimentacao(motorista.Conteudo.Id, veiculo.Conteudo.Id, fazenda.Conteudo.Id
-                , pl.Conteudo.Id, float.Parse(txtPesoTotal.Text), int.Parse(txtQtdCaixas.Value.ToString()), dataEntrada.Value);
-
-            if (resultadoMovimentacao.Sucesso)
+            if (comboMotorista.SelectedItem == null || string.IsNullOrWhiteSpace(comboMotorista.SelectedItem.ToString()))
             {
-                _movimentacaoCaixasService.RegistrarEntradaMovimentacaoCaixas(dataEntrada.Value, int.Parse(txtQtdCaixas.Value.ToString()), comboBarracao.SelectedItem.ToString(), comboFazenda.SelectedItem.ToString(), comboMotorista.SelectedItem.ToString(), comboVeiculos.SelectedItem.ToString(), null);
-                MessageBox.Show("Movimentação cadastrada com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            } else
+                MessageBox.Show("O campo 'Motorista' é obrigatório.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (comboVeiculos.SelectedItem == null || string.IsNullOrWhiteSpace(comboVeiculos.SelectedItem.ToString()))
+            {
+                MessageBox.Show("O campo 'Veículo' é obrigatório.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if (comboFazenda.SelectedItem == null || string.IsNullOrWhiteSpace(comboFazenda.SelectedItem.ToString()))
+            {
+                MessageBox.Show("O campo 'Fazenda' é obrigatório.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            var motorista = _motoristaService.RetornaMotoristaPeloNome(comboMotorista.SelectedItem.ToString());
+            if (motorista == null || !motorista.Sucesso || motorista.Conteudo == null)
+            {
+                MessageBox.Show("Erro ao buscar motorista.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var veiculo = _veiculoService.RetornaVeiculoPelaPlaca(comboVeiculos.SelectedItem.ToString());
+            if (veiculo == null || !veiculo.Sucesso || veiculo.Conteudo == null)
+            {
+                MessageBox.Show("Erro ao buscar veículo.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var fazenda = _fazendaService.RetornaFazendaPeloNome(comboFazenda.SelectedItem.ToString());
+            if (fazenda == null || !fazenda.Sucesso || fazenda.Conteudo == null)
+            {
+                MessageBox.Show("Erro ao buscar fazenda.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var pl = _plService.RetornaPlPeloNomeeFazenda(comboPL.SelectedItem.ToString(), fazenda.Conteudo.Nome);
+            if (pl == null || !pl.Sucesso || pl.Conteudo == null)
+            {
+                MessageBox.Show("Erro ao buscar PL.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var resultadoMovimentacao = _movimentacaoProducaoRocaService.CriarMovimentacao(
+                motorista.Conteudo.Id,
+                veiculo.Conteudo.Id,
+                fazenda.Conteudo.Id,
+                pl.Conteudo.Id,
+                float.Parse(txtPesoTotal.Text),
+                int.Parse(txtQtdCaixas.Value.ToString()),
+                dataEntrada.Value
+            );
+
+            if (!resultadoMovimentacao.Sucesso)
             {
                 MessageBox.Show(resultadoMovimentacao.MensagemErro, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
+
+            MessageBox.Show(resultadoMovimentacao.MensagemErro, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            this.Dispose();
         }
     }
 }

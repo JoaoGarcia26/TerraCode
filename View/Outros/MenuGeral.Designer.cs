@@ -36,11 +36,9 @@
             this.listarUsuáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.estoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarEntradaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarSaidaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.listarEstoqueToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.alhoDaRoçaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registrarEntradaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registrarSaidaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.listarProduçãoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fazendaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -59,7 +57,6 @@
             this.btnEstoque = new System.Windows.Forms.Button();
             this.btnAlhoRoca = new System.Windows.Forms.Button();
             this.btnPls = new System.Windows.Forms.Button();
-            this.btnRelatorios = new System.Windows.Forms.Button();
             this.btnVeiculos = new System.Windows.Forms.Button();
             this.btnCaixas = new System.Windows.Forms.Button();
             this.btnClassificacao = new System.Windows.Forms.Button();
@@ -71,7 +68,7 @@
             // 
             this.btnUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUsuarios.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUsuarios.Location = new System.Drawing.Point(577, 50);
+            this.btnUsuarios.Location = new System.Drawing.Point(22, 50);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(164, 55);
             this.btnUsuarios.TabIndex = 0;
@@ -93,7 +90,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
-            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(715, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -124,7 +121,6 @@
             // 
             this.estoqueToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarEntradaToolStripMenuItem1,
-            this.registrarSaidaToolStripMenuItem1,
             this.listarEstoqueToolStripMenuItem});
             this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
             this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
@@ -133,26 +129,21 @@
             // registrarEntradaToolStripMenuItem1
             // 
             this.registrarEntradaToolStripMenuItem1.Name = "registrarEntradaToolStripMenuItem1";
-            this.registrarEntradaToolStripMenuItem1.Size = new System.Drawing.Size(206, 26);
+            this.registrarEntradaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.registrarEntradaToolStripMenuItem1.Text = "Registrar Entrada";
-            // 
-            // registrarSaidaToolStripMenuItem1
-            // 
-            this.registrarSaidaToolStripMenuItem1.Name = "registrarSaidaToolStripMenuItem1";
-            this.registrarSaidaToolStripMenuItem1.Size = new System.Drawing.Size(206, 26);
-            this.registrarSaidaToolStripMenuItem1.Text = "Registrar Saida";
+            this.registrarEntradaToolStripMenuItem1.Click += new System.EventHandler(this.registrarEntradaToolStripMenuItem1_Click);
             // 
             // listarEstoqueToolStripMenuItem
             // 
             this.listarEstoqueToolStripMenuItem.Name = "listarEstoqueToolStripMenuItem";
-            this.listarEstoqueToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.listarEstoqueToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.listarEstoqueToolStripMenuItem.Text = "Listar Estoque";
+            this.listarEstoqueToolStripMenuItem.Click += new System.EventHandler(this.listarEstoqueToolStripMenuItem_Click);
             // 
             // alhoDaRoçaToolStripMenuItem
             // 
             this.alhoDaRoçaToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registrarEntradaToolStripMenuItem,
-            this.registrarSaidaToolStripMenuItem,
             this.listarProduçãoToolStripMenuItem});
             this.alhoDaRoçaToolStripMenuItem.Name = "alhoDaRoçaToolStripMenuItem";
             this.alhoDaRoçaToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
@@ -161,20 +152,16 @@
             // registrarEntradaToolStripMenuItem
             // 
             this.registrarEntradaToolStripMenuItem.Name = "registrarEntradaToolStripMenuItem";
-            this.registrarEntradaToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.registrarEntradaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.registrarEntradaToolStripMenuItem.Text = "Registrar Entrada";
-            // 
-            // registrarSaidaToolStripMenuItem
-            // 
-            this.registrarSaidaToolStripMenuItem.Name = "registrarSaidaToolStripMenuItem";
-            this.registrarSaidaToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
-            this.registrarSaidaToolStripMenuItem.Text = "Registrar Saida";
+            this.registrarEntradaToolStripMenuItem.Click += new System.EventHandler(this.registrarEntradaToolStripMenuItem_Click);
             // 
             // listarProduçãoToolStripMenuItem
             // 
             this.listarProduçãoToolStripMenuItem.Name = "listarProduçãoToolStripMenuItem";
-            this.listarProduçãoToolStripMenuItem.Size = new System.Drawing.Size(206, 26);
+            this.listarProduçãoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.listarProduçãoToolStripMenuItem.Text = "Listar Produção";
+            this.listarProduçãoToolStripMenuItem.Click += new System.EventHandler(this.listarProduçãoToolStripMenuItem_Click);
             // 
             // fazendaToolStripMenuItem
             // 
@@ -258,21 +245,22 @@
             // cadastrarVeículoToolStripMenuItem
             // 
             this.cadastrarVeículoToolStripMenuItem.Name = "cadastrarVeículoToolStripMenuItem";
-            this.cadastrarVeículoToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.cadastrarVeículoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.cadastrarVeículoToolStripMenuItem.Text = "Cadastrar Veículo";
             this.cadastrarVeículoToolStripMenuItem.Click += new System.EventHandler(this.cadastrarVeículoToolStripMenuItem_Click);
             // 
             // listarVeículosToolStripMenuItem
             // 
             this.listarVeículosToolStripMenuItem.Name = "listarVeículosToolStripMenuItem";
-            this.listarVeículosToolStripMenuItem.Size = new System.Drawing.Size(207, 26);
+            this.listarVeículosToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.listarVeículosToolStripMenuItem.Text = "Listar Veículos";
+            this.listarVeículosToolStripMenuItem.Click += new System.EventHandler(this.listarVeículosToolStripMenuItem_Click);
             // 
             // btnMotoristas
             // 
             this.btnMotoristas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMotoristas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMotoristas.Location = new System.Drawing.Point(577, 127);
+            this.btnMotoristas.Location = new System.Drawing.Point(22, 280);
             this.btnMotoristas.Name = "btnMotoristas";
             this.btnMotoristas.Size = new System.Drawing.Size(164, 55);
             this.btnMotoristas.TabIndex = 2;
@@ -284,7 +272,7 @@
             // 
             this.btnFazenda.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFazenda.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFazenda.Location = new System.Drawing.Point(577, 280);
+            this.btnFazenda.Location = new System.Drawing.Point(22, 127);
             this.btnFazenda.Name = "btnFazenda";
             this.btnFazenda.Size = new System.Drawing.Size(164, 55);
             this.btnFazenda.TabIndex = 4;
@@ -296,7 +284,7 @@
             // 
             this.btnEstoque.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEstoque.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEstoque.Location = new System.Drawing.Point(577, 203);
+            this.btnEstoque.Location = new System.Drawing.Point(523, 203);
             this.btnEstoque.Name = "btnEstoque";
             this.btnEstoque.Size = new System.Drawing.Size(164, 55);
             this.btnEstoque.TabIndex = 3;
@@ -308,7 +296,7 @@
             // 
             this.btnAlhoRoca.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlhoRoca.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAlhoRoca.Location = new System.Drawing.Point(577, 357);
+            this.btnAlhoRoca.Location = new System.Drawing.Point(523, 50);
             this.btnAlhoRoca.Name = "btnAlhoRoca";
             this.btnAlhoRoca.Size = new System.Drawing.Size(164, 55);
             this.btnAlhoRoca.TabIndex = 5;
@@ -320,7 +308,7 @@
             // 
             this.btnPls.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPls.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPls.Location = new System.Drawing.Point(380, 50);
+            this.btnPls.Location = new System.Drawing.Point(22, 203);
             this.btnPls.Name = "btnPls";
             this.btnPls.Size = new System.Drawing.Size(164, 55);
             this.btnPls.TabIndex = 6;
@@ -328,22 +316,11 @@
             this.btnPls.UseVisualStyleBackColor = true;
             this.btnPls.Click += new System.EventHandler(this.btnPls_Click);
             // 
-            // btnRelatorios
-            // 
-            this.btnRelatorios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRelatorios.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRelatorios.Location = new System.Drawing.Point(380, 127);
-            this.btnRelatorios.Name = "btnRelatorios";
-            this.btnRelatorios.Size = new System.Drawing.Size(164, 55);
-            this.btnRelatorios.TabIndex = 7;
-            this.btnRelatorios.Text = "Relatórios";
-            this.btnRelatorios.UseVisualStyleBackColor = true;
-            // 
             // btnVeiculos
             // 
             this.btnVeiculos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVeiculos.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVeiculos.Location = new System.Drawing.Point(380, 203);
+            this.btnVeiculos.Location = new System.Drawing.Point(22, 357);
             this.btnVeiculos.Name = "btnVeiculos";
             this.btnVeiculos.Size = new System.Drawing.Size(164, 55);
             this.btnVeiculos.TabIndex = 8;
@@ -355,7 +332,7 @@
             // 
             this.btnCaixas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCaixas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCaixas.Location = new System.Drawing.Point(380, 280);
+            this.btnCaixas.Location = new System.Drawing.Point(523, 357);
             this.btnCaixas.Name = "btnCaixas";
             this.btnCaixas.Size = new System.Drawing.Size(164, 55);
             this.btnCaixas.TabIndex = 9;
@@ -367,7 +344,7 @@
             // 
             this.btnClassificacao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClassificacao.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClassificacao.Location = new System.Drawing.Point(380, 357);
+            this.btnClassificacao.Location = new System.Drawing.Point(523, 127);
             this.btnClassificacao.Name = "btnClassificacao";
             this.btnClassificacao.Size = new System.Drawing.Size(164, 55);
             this.btnClassificacao.TabIndex = 10;
@@ -379,7 +356,7 @@
             // 
             this.btnVendas.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnVendas.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVendas.Location = new System.Drawing.Point(186, 357);
+            this.btnVendas.Location = new System.Drawing.Point(523, 280);
             this.btnVendas.Name = "btnVendas";
             this.btnVendas.Size = new System.Drawing.Size(164, 55);
             this.btnVendas.TabIndex = 11;
@@ -392,12 +369,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = global::TerraCode.Properties.Resources.TerraCode_LogoSemFundo;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.ClientSize = new System.Drawing.Size(715, 450);
             this.Controls.Add(this.btnVendas);
             this.Controls.Add(this.btnClassificacao);
             this.Controls.Add(this.btnCaixas);
             this.Controls.Add(this.btnVeiculos);
-            this.Controls.Add(this.btnRelatorios);
             this.Controls.Add(this.btnPls);
             this.Controls.Add(this.btnAlhoRoca);
             this.Controls.Add(this.btnFazenda);
@@ -405,6 +383,7 @@
             this.Controls.Add(this.btnMotoristas);
             this.Controls.Add(this.btnUsuarios);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MenuGeral";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -433,7 +412,6 @@
         private System.Windows.Forms.ToolStripMenuItem listarTodasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem alhoDaRoçaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrarEntradaToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registrarSaidaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarProduçãoToolStripMenuItem;
         private System.Windows.Forms.Button btnPls;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem1;
@@ -441,12 +419,10 @@
         private System.Windows.Forms.ToolStripMenuItem adicionarUsuárioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarUsuáriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registrarEntradaToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem registrarSaidaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem listarEstoqueToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pLsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarPLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem listarPLsToolStripMenuItem;
-        private System.Windows.Forms.Button btnRelatorios;
         private System.Windows.Forms.Button btnVeiculos;
         private System.Windows.Forms.ToolStripMenuItem veículosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarVeículoToolStripMenuItem;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Windows.Forms;
 using TerraCode.Service;
 using TerraCode.View.AlhoDaRoca;
@@ -41,7 +42,7 @@ namespace TerraCode.View
             dt.Columns.Add("PL", typeof(string));
             dt.Columns.Add("Peso Total", typeof(float));
             dt.Columns.Add("Número de Caixas", typeof(int));
-            dt.Columns.Add("Peso Médio por Caixa", typeof(float));
+            dt.Columns.Add("Peso Médio por Caixa (KG)", typeof(string));
 
             if (!resultado.Sucesso || resultado.Conteudo == null || resultado.Conteudo.Count == 0)
             {
@@ -60,9 +61,10 @@ namespace TerraCode.View
                 string fazendaNome = fazenda != null ? fazenda.Nome : "Desconhecida";
                 string plNome = pl != null ? pl.Nome : "Desconhecido";
 
-                float pesoMedioPorCaixa = (float)((item.NumCaixas > 0) ? item.PesoTotal / item.NumCaixas : 0);
+                float pesoMedioPorCaixa = (float)((item.NumCaixas > 0) ? (item.PesoTotal / item.NumCaixas) : 0);
+                string pesoMedioPorCaixaFormatado = pesoMedioPorCaixa.ToString("F2");
 
-                dt.Rows.Add(item.DataEntrada, motoristaNome, veiculo.Placa, fazendaNome, plNome, item.PesoTotal, item.NumCaixas, pesoMedioPorCaixa);
+                dt.Rows.Add(item.DataEntrada, motoristaNome, veiculo.Placa, fazendaNome, plNome, item.PesoTotal, item.NumCaixas, pesoMedioPorCaixaFormatado);
             }
 
             dataGridView1.DataSource = dt;
@@ -70,13 +72,13 @@ namespace TerraCode.View
             dataGridView1.RowHeadersVisible = false;
 
             dataGridView1.Columns["Data de Entrada"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns["Motorista"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns["Motorista"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Veículo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["Fazenda"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["PL"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["Peso Total"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["Número de Caixas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridView1.Columns["Peso Médio por Caixa"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns["Peso Médio por Caixa (KG)"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             dataGridView1.Refresh();
         }
@@ -89,6 +91,26 @@ namespace TerraCode.View
         private void ScreenAlhoDaRoca_Activated(object sender, EventArgs e)
         {
             ScreenAlhoDaRoca_Load(sender, e);
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name == "Peso Médio por Caixa (KG)" && e.Value != null)
+            {
+                if (float.TryParse(e.Value.ToString(), out float pesoMedio))
+                {
+                    if (pesoMedio >= 20)
+                    {
+                        e.CellStyle.BackColor = Color.Green;
+                        e.CellStyle.ForeColor = Color.White;
+                    }
+                    else
+                    {
+                        e.CellStyle.BackColor = Color.Red;
+                        e.CellStyle.ForeColor = Color.White;
+                    }
+                }
+            }
         }
     }
 }

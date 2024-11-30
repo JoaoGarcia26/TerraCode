@@ -15,7 +15,13 @@ namespace TerraCode.Service
             _estoqueRepository = new EstoqueRepository();
         }
 
-        public ResultadoOperacao CriarEstoque(DateTime data, string evento, string docNr, int fazendaId, int plId, Dictionary<string, Dictionary<string, int>> classificacoesPorTipo)
+        public ResultadoOperacao CriarEstoque(
+    DateTime data,
+    string evento,
+    string docNr,
+    int fazendaId,
+    int plId,
+    Dictionary<string, Dictionary<string, int>> classificacoesPorTipo)
         {
             if (string.IsNullOrEmpty(evento))
             {
@@ -64,6 +70,14 @@ namespace TerraCode.Service
                             else if (tipoProduto == "4") estoque.Cat4 = quantidade;
                             break;
 
+                        case "Comercial":
+                            if (tipoProduto == "8") estoque.Comercial8 = quantidade;
+                            else if (tipoProduto == "7") estoque.Comercial7 = quantidade;
+                            else if (tipoProduto == "6") estoque.Comercial6 = quantidade;
+                            else if (tipoProduto == "5") estoque.Comercial5 = quantidade;
+                            else if (tipoProduto == "4") estoque.Comercial4 = quantidade;
+                            break;
+
                         case "Especial":
                             if (tipoProduto == "8") estoque.Especial8 = quantidade;
                             else if (tipoProduto == "7") estoque.Especial7 = quantidade;
@@ -79,14 +93,7 @@ namespace TerraCode.Service
                             else if (tipoProduto == "5") estoque.Escovado5 = quantidade;
                             else if (tipoProduto == "4") estoque.Escovado4 = quantidade;
                             else if (tipoProduto == "3") estoque.Escovado3 = quantidade;
-                            break;
-
-                        case "Comercial":
-                            if (tipoProduto == "8") estoque.Comercial8 = quantidade;
-                            else if (tipoProduto == "7") estoque.Comercial7 = quantidade;
-                            else if (tipoProduto == "6") estoque.Comercial6 = quantidade;
-                            else if (tipoProduto == "5") estoque.Comercial5 = quantidade;
-                            else if (tipoProduto == "4") estoque.Comercial4 = quantidade;
+                            else if (tipoProduto == "2/3") estoque.Escovado2_3 = quantidade;
                             break;
 
                         case "Borrado":
@@ -102,10 +109,15 @@ namespace TerraCode.Service
                             break;
 
                         default:
-                            return new ResultadoOperacao { Sucesso = false, MensagemErro = $"Tipo de classificação '{tipo}' desconhecido." };
+                            return new ResultadoOperacao
+                            {
+                                Sucesso = false,
+                                MensagemErro = $"Tipo de classificação '{tipo}' ou '{tipoProduto}' desconhecido."
+                            };
                     }
                 }
             }
+
             bool sucesso = _estoqueRepository.CreateEstoque(estoque);
             return new ResultadoOperacao
             {

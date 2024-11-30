@@ -53,9 +53,9 @@ namespace TerraCode.View.Classificacao
             dt.Columns.Add("Peso Alho 4", typeof(float));
             dt.Columns.Add("Peso Alho 3", typeof(float));
             dt.Columns.Add("Peso Industrial", typeof(float));
-            dt.Columns.Add("Total Classificado", typeof(float));
             dt.Columns.Add("Descarte", typeof(float));
             dt.Columns.Add("Perda", typeof(float));
+            dt.Columns.Add("Total Classificado (KG)", typeof(float));
 
             if (resultado.Sucesso && resultado.Conteudo != null && resultado.Conteudo.Count > 0)
             {
@@ -78,9 +78,9 @@ namespace TerraCode.View.Classificacao
                         item.PesoAlho4,
                         item.PesoAlho3,
                         item.PesoIndustrial,
-                        item.TotalClassificado,
                         item.Descarte,
-                        item.Perda
+                        item.Perda,
+                        item.TotalClassificado
                     );
                 }
             }
@@ -103,11 +103,16 @@ namespace TerraCode.View.Classificacao
             dataGridView1.Columns["Peso Alho 4"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Peso Alho 3"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Peso Industrial"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["Total Classificado"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Descarte"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridView1.Columns["Perda"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns["Total Classificado (KG)"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dataGridView1.Refresh();
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
         }
     }
 }

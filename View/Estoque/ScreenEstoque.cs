@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using TerraCode.Model;
 using TerraCode.Service;
 using TerraCode.View.Estoque.Movimentacoes;
 
@@ -198,6 +200,7 @@ namespace TerraCode.View.Estoque
                 
 
                 LoadEstoqueChart(fazendaSelecionada, plSelecionado, comboSafra.SelectedItem.ToString());
+                ExibirEstatisticasPorPL(fazendaSelecionada, plSelecionado, comboSafra.SelectedItem.ToString());
                 lblTitulo.Text = $"Visão Geral do Estoque | {comboSafra.SelectedItem.ToString()}";
                 lblSubTitulo.Text = $"Fazenda: {fazendaSelecionada} | Todos os PL's";
             }
@@ -207,6 +210,7 @@ namespace TerraCode.View.Estoque
                 string plSelecionado = comboPL.SelectedItem?.ToString();
 
                 LoadEstoqueChart(fazendaSelecionada, plSelecionado, comboSafra.SelectedItem.ToString());
+                ExibirEstatisticasPorPL(fazendaSelecionada, plSelecionado, comboSafra.SelectedItem.ToString());
                 lblTitulo.Text = $"Visão Geral do Estoque | {comboSafra.SelectedItem.ToString()}";
                 lblSubTitulo.Text = $"Fazenda: {fazendaSelecionada} | PL: {plSelecionado}";
             }
@@ -233,47 +237,228 @@ namespace TerraCode.View.Estoque
                 LoadEstoqueChart(comboFazenda.SelectedItem.ToString(), null, comboSafra.SelectedItem.ToString());
             }
             LoadEstoqueChart(comboFazenda.SelectedItem?.ToString(), comboPL.SelectedItem?.ToString(), comboSafra.SelectedItem?.ToString());
+            ExibirEstatisticasPorPL(comboFazenda.SelectedItem?.ToString(), comboPL.SelectedItem?.ToString(), comboSafra.SelectedItem?.ToString());
         }
 
-
-        /*private void ExibirGraficos(List<Model.Estoque> estoques)
+        private void ExibirEstatisticasPorPL(string Fazenda = null, string PL = null, string Safra = null)
         {
-            this.Controls.OfType<Chart>().ToList().ForEach(c => this.Controls.Remove(c));
+            // Limpa os controles existentes no painel antes de exibir novos dados
+            pnlGraficos.Controls.Clear();
 
-            foreach (var estoque in estoques)
+            int? idFazenda = null;
+            int? idPL = null;
+            int? idSafra = null;
+
+            var estoqueGeral = new Dictionary<string, int>();
+
+            // Obtém o ID da fazenda, se fornecido
+            if (!string.IsNullOrEmpty(Fazenda))
             {
-                var groupBox = new GroupBox
-                {
-                    Name = $"groupBoxPL_{estoque.PL_Id}",
-                    Text = $"Estoque de Alho para PL {estoque.PL_Id}",
-                    Width = 420,
-                    Height = 350,
-                    Location = new Point(10, 10 + (estoques.IndexOf(estoque) * 360))
-                };
-
-                var chart = new Chart
-                {
-                    Name = $"chartPL_{estoque.PL_Id}",
-                    Width = 400,
-                    Height = 300
-                };
-
-                var series = new Series($"Total Alho PL {estoque.PL_Id}")
-                {
-                    ChartType = SeriesChartType.Pie
-                };
-
-                series.Points.AddXY("Total Alho 8", estoque.TotalAlho8);
-                series.Points.AddXY("Total Alho 7", estoque.TotalAlho7);
-                series.Points.AddXY("Total Alho 6", estoque.TotalAlho6);
-                series.Points.AddXY("Total Alho 5", estoque.TotalAlho5);
-                series.Points.AddXY("Total Alho 4", estoque.TotalAlho4);
-                series.Points.AddXY("Total Alho 3", estoque.TotalAlho3);
-
-                chart.Series.Add(series);
-                groupBox.Controls.Add(chart);
-                this.Controls.Add(groupBox);
+                var fazendaSelecionada = _fazendaService.RetornaFazendaPeloNome(Fazenda);
+                idFazenda = fazendaSelecionada.Conteudo.Id;
             }
-        }*/
+
+            // Obtém o ID do PL, se fornecido
+            if (!string.IsNullOrEmpty(PL))
+            {
+                var plSelecionado = _plService.RetornaPlPeloNomeeFazenda(PL, Fazenda);
+
+                if (plSelecionado == null || plSelecionado.Conteudo == null)
+                {
+                    idPL = null;
+                }
+                else
+                {
+                    idPL = plSelecionado.Conteudo.Id;
+                }
+            }
+
+            // Obtém o ID da safra
+            var safraSelecionada = _safraService.RetornaSafraPeloNome(Safra);
+            idSafra = safraSelecionada.Conteudo.Id;
+
+            // Recupera o estoque para a fazenda, PL e safra selecionados
+            estoqueGeral = _estoqueService.GetEstoqueGeralPorFazendaEPL(idFazenda, idPL, idSafra).Conteudo;
+
+            // Agrupa as subcategorias nas respectivas categorias
+            var categoriasPrincipais = new Dictionary<string, int>
+    {
+        { "8", 0 },
+        { "7", 0 },
+        { "6", 0 },
+        { "5", 0 },
+        { "4", 0 },
+        { "3", 0 },
+        { "Industrial", 0 },
+        { "Outros", 0 },
+    };
+
+            // Soma as subcategorias nas categorias principais
+            foreach (var item in estoqueGeral)
+            {
+                Console.WriteLine($"{item.Key}");
+                if (categoriasPrincipais.ContainsKey(item.Key))
+                {
+                    categoriasPrincipais[item.Key] += item.Value;
+                }
+                else if (item.Key.StartsWith("Extra 8"))
+                {
+                    categoriasPrincipais["8"] += item.Value; // Contando como categoria 8
+                }
+                else if (item.Key.StartsWith("Comercial 8"))
+                {
+                    categoriasPrincipais["8"] += item.Value; // Contando como categoria 8
+                }
+                else if (item.Key.StartsWith("Especial 8"))
+                {
+                    categoriasPrincipais["8"] += item.Value; // Contando como categoria 8
+                }
+                else if (item.Key.StartsWith("Cat 8"))
+                {
+                    categoriasPrincipais["8"] += item.Value; // Contando como categoria 8
+                }
+                else if (item.Key.StartsWith("Escovado 8"))
+                {
+                    categoriasPrincipais["8"] += item.Value; // Contando como categoria 8
+                }
+                else if (item.Key.StartsWith("Extra 7"))
+                {
+                    categoriasPrincipais["7"] += item.Value; // Contando como categoria 7
+                }
+                else if (item.Key.StartsWith("Comercial 7"))
+                {
+                    categoriasPrincipais["7"] += item.Value; // Contando como categoria 7
+                }
+                else if (item.Key.StartsWith("Especial 7"))
+                {
+                    categoriasPrincipais["7"] += item.Value; // Contando como categoria 7
+                }
+                else if (item.Key.StartsWith("Cat 7"))
+                {
+                    categoriasPrincipais["7"] += item.Value; // Contando como categoria 7
+                }
+                else if (item.Key.StartsWith("Escovado 7"))
+                {
+                    categoriasPrincipais["7"] += item.Value; // Contando como categoria 7
+                }
+                else if (item.Key.StartsWith("Extra 6"))
+                {
+                    categoriasPrincipais["6"] += item.Value; // Contando como categoria 6
+                }
+                else if (item.Key.StartsWith("Comercial 6"))
+                {
+                    categoriasPrincipais["6"] += item.Value; // Contando como categoria 6
+                }
+                else if (item.Key.StartsWith("Especial 6"))
+                {
+                    categoriasPrincipais["6"] += item.Value; // Contando como categoria 6
+                }
+                else if (item.Key.StartsWith("Cat 6"))
+                {
+                    categoriasPrincipais["6"] += item.Value; // Contando como categoria 6
+                }
+                else if (item.Key.StartsWith("Escovado 6"))
+                {
+                    categoriasPrincipais["6"] += item.Value; // Contando como categoria 6
+                }
+                else if (item.Key.StartsWith("Extra 5"))
+                {
+                    categoriasPrincipais["5"] += item.Value; // Contando como categoria 5
+                }
+                else if (item.Key.StartsWith("Comercial 5"))
+                {
+                    categoriasPrincipais["5"] += item.Value; // Contando como categoria 5
+                }
+                else if (item.Key.StartsWith("Especial 5"))
+                {
+                    categoriasPrincipais["5"] += item.Value; // Contando como categoria 5
+                }
+                else if (item.Key.StartsWith("Cat 5"))
+                {
+                    categoriasPrincipais["5"] += item.Value; // Contando como categoria 5
+                }
+                else if (item.Key.StartsWith("Escovado 5"))
+                {
+                    categoriasPrincipais["5"] += item.Value; // Contando como categoria 5
+                }
+                else if (item.Key.StartsWith("Extra 4"))
+                {
+                    categoriasPrincipais["4"] += item.Value; // Contando como categoria 4
+                }
+                else if (item.Key.StartsWith("Comercial 4"))
+                {
+                    categoriasPrincipais["4"] += item.Value; // Contando como categoria 4
+                }
+                else if (item.Key.StartsWith("Especial 4"))
+                {
+                    categoriasPrincipais["4"] += item.Value; // Contando como categoria 4
+                }
+                else if (item.Key.StartsWith("Cat 4"))
+                {
+                    categoriasPrincipais["4"] += item.Value; // Contando como categoria 4
+                }
+                else if (item.Key.StartsWith("Escovado 4"))
+                {
+                    categoriasPrincipais["4"] += item.Value; // Contando como categoria 4
+                }
+                else if (item.Key.StartsWith("Escovado 3"))
+                {
+                    categoriasPrincipais["3"] += item.Value; // Contando como categoria 3
+                }
+                else if (item.Key.StartsWith("Borrado 20kg"))
+                {
+                    categoriasPrincipais["Outros"] += item.Value; // Contando como categoria Outros
+                }
+                else if (item.Key.StartsWith("Escovado 2/3"))
+                {
+                    categoriasPrincipais["Outros"] += item.Value; // Contando como categoria Outros
+                }
+                else if (item.Key.StartsWith("Industrial 20kg"))
+                {
+                    categoriasPrincipais["Outros"] += item.Value; // Contando como categoria Outros
+                }
+                else if (item.Key.StartsWith("Dente 20kg"))
+                {
+                    categoriasPrincipais["Outros"] += item.Value; // Contando como categoria Outros
+                }
+            }
+
+            // Calcula o total de estoque
+            int totalEstoque = categoriasPrincipais.Values.Sum();
+
+            if (totalEstoque == 0)
+            {
+                // Se o estoque total for zero, exibe uma mensagem informando
+                Label lblNenhumEstoque = new Label
+                {
+                    Text = "Não há estoque disponível para os filtros selecionados.",
+                    AutoSize = true,
+                    Font = new Font("Lucida Sans Unicode", 10, FontStyle.Bold),
+                    Dock = DockStyle.Top
+                };
+                pnlGraficos.Controls.Add(lblNenhumEstoque);
+                return;
+            }
+
+            // Exibe as estatísticas de cada categoria principal em ordem crescente
+            foreach (var categoria in categoriasPrincipais.OrderBy(c => c.Key))
+            {
+                if (categoria.Value > 0) // Verifica se a quantidade é maior que zero
+                {
+                    // Calcula a porcentagem de cada categoria em relação ao total
+                    double porcentagem = ((double)categoria.Value / totalEstoque) * 100;
+
+                    // Cria um label para exibir a estatística
+                    Label lblEstatistica = new Label
+                    {
+                        Text = $"Classe {categoria.Key}: {categoria.Value} - ({porcentagem:F2}%)",
+                        AutoSize = true,
+                        Font = new Font("Lucida Sans Unicode", 8),
+                        Dock = DockStyle.Top
+                    };
+                    pnlGraficos.Controls.Add(lblEstatistica);
+                }
+            }
+        }
     }
 }

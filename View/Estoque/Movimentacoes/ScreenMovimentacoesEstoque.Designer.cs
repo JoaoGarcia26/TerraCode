@@ -146,7 +146,7 @@
             this.comboEvento.Items.AddRange(new object[] {
             "",
             "Produção",
-            "Transferência"});
+            "Venda"});
             this.comboEvento.Location = new System.Drawing.Point(660, 19);
             this.comboEvento.Name = "comboEvento";
             this.comboEvento.Size = new System.Drawing.Size(136, 28);

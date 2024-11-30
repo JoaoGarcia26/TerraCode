@@ -32,5 +32,10 @@ namespace TerraCode.View.Fazendas
                 MessageBox.Show(resultado.MensagemErro, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
     }
 }

@@ -62,6 +62,7 @@ namespace TerraCode.View
             if (resultado.Sucesso)
             {
                 MessageBox.Show(resultado.MensagemErro, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Dispose();
             }
             else
             {

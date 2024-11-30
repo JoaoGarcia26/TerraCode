@@ -51,7 +51,7 @@ namespace TerraCode.Service
 
             if (sucesso)
             {
-                return new ResultadoOperacao { Sucesso = true };
+                return new ResultadoOperacao { Sucesso = true, MensagemErro = "Movimentação cadastrada com sucesso!" };
             }
             else
             {

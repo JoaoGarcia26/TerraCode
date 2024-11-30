@@ -56,12 +56,13 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(949, 334);
+            this.dataGridView1.Size = new System.Drawing.Size(1132, 334);
             this.dataGridView1.TabIndex = 11;
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
             // btnRegistrar
             // 
-            this.btnRegistrar.Location = new System.Drawing.Point(884, 375);
+            this.btnRegistrar.Location = new System.Drawing.Point(1067, 375);
             this.btnRegistrar.Name = "btnRegistrar";
             this.btnRegistrar.Size = new System.Drawing.Size(114, 52);
             this.btnRegistrar.TabIndex = 13;
@@ -73,7 +74,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1047, 450);
+            this.ClientSize = new System.Drawing.Size(1230, 450);
             this.Controls.Add(this.btnVoltar);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnRegistrar);

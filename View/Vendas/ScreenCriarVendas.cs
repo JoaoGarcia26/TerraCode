@@ -27,12 +27,12 @@ namespace TerraCode.View.Vendas
         private void CarregaTabelaRomaneio()
         {
             dataGridView1.Columns.Add("Produto", "Produto");
-            dataGridView1.Columns.Add("Quantidade", "Quantidade");
+            dataGridView1.Columns.Add("Quantidade em Caixas", "Quantidade em Caixas");
 
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.Columns["Produto"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["Quantidade"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridView1.Columns["Quantidade"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+            dataGridView1.Columns["Quantidade em Caixas"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridView1.Columns["Quantidade em Caixas"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
             AddNewRow();
         }
@@ -82,7 +82,7 @@ namespace TerraCode.View.Vendas
             if (e.RowIndex == dataGridView1.Rows.Count - 1)
             {
                 var produtoValue = dataGridView1.Rows[e.RowIndex].Cells["Produto"].Value?.ToString();
-                var quantidadeValue = dataGridView1.Rows[e.RowIndex].Cells["Quantidade"].Value?.ToString();
+                var quantidadeValue = dataGridView1.Rows[e.RowIndex].Cells["Quantidade em Caixas"].Value?.ToString();
 
                 if (!string.IsNullOrEmpty(produtoValue) && !string.IsNullOrEmpty(quantidadeValue))
                 {
@@ -125,7 +125,7 @@ namespace TerraCode.View.Vendas
                 if (row.IsNewRow) continue;
 
                 var produto = row.Cells["Produto"].Value?.ToString();
-                var quantidadeString = row.Cells["Quantidade"].Value?.ToString();
+                var quantidadeString = row.Cells["Quantidade em Caixas"].Value?.ToString();
 
                 if (!string.IsNullOrEmpty(produto) && int.TryParse(quantidadeString, out int quantidade))
                 {

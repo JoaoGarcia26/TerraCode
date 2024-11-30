@@ -40,14 +40,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.lblExtra = new System.Windows.Forms.Label();
             this.lblCat = new System.Windows.Forms.Label();
-            this.lblEspecial = new System.Windows.Forms.Label();
+            this.lblComercial = new System.Windows.Forms.Label();
             this.lblEscovado = new System.Windows.Forms.Label();
             this.numExtra = new System.Windows.Forms.NumericUpDown();
             this.numCat = new System.Windows.Forms.NumericUpDown();
             this.numEspecial = new System.Windows.Forms.NumericUpDown();
             this.numEscovado = new System.Windows.Forms.NumericUpDown();
             this.numComercial = new System.Windows.Forms.NumericUpDown();
-            this.lblComercial = new System.Windows.Forms.Label();
+            this.lblEspecial = new System.Windows.Forms.Label();
             this.numValor = new System.Windows.Forms.NumericUpDown();
             this.lblQuantidade = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -138,8 +138,7 @@
             this.comboEvento.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboEvento.FormattingEnabled = true;
             this.comboEvento.Items.AddRange(new object[] {
-            "Produção",
-            "Transferência"});
+            "Produção"});
             this.comboEvento.Location = new System.Drawing.Point(31, 239);
             this.comboEvento.Name = "comboEvento";
             this.comboEvento.Size = new System.Drawing.Size(171, 28);
@@ -180,21 +179,21 @@
             this.lblCat.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCat.Location = new System.Drawing.Point(267, 90);
             this.lblCat.Name = "lblCat";
-            this.lblCat.Size = new System.Drawing.Size(35, 17);
+            this.lblCat.Size = new System.Drawing.Size(87, 17);
             this.lblCat.TabIndex = 108;
-            this.lblCat.Text = "Cat:";
+            this.lblCat.Text = "Categoria I:";
             this.lblCat.Visible = false;
             // 
-            // lblEspecial
+            // lblComercial
             // 
-            this.lblEspecial.AutoSize = true;
-            this.lblEspecial.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEspecial.Location = new System.Drawing.Point(267, 153);
-            this.lblEspecial.Name = "lblEspecial";
-            this.lblEspecial.Size = new System.Drawing.Size(67, 17);
-            this.lblEspecial.TabIndex = 110;
-            this.lblEspecial.Text = "Especial:";
-            this.lblEspecial.Visible = false;
+            this.lblComercial.AutoSize = true;
+            this.lblComercial.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComercial.Location = new System.Drawing.Point(267, 153);
+            this.lblComercial.Name = "lblComercial";
+            this.lblComercial.Size = new System.Drawing.Size(91, 17);
+            this.lblComercial.TabIndex = 110;
+            this.lblComercial.Text = "Categoria II:";
+            this.lblComercial.Visible = false;
             // 
             // lblEscovado
             // 
@@ -238,7 +237,7 @@
             // numEspecial
             // 
             this.numEspecial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numEspecial.Location = new System.Drawing.Point(270, 174);
+            this.numEspecial.Location = new System.Drawing.Point(270, 304);
             this.numEspecial.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -266,7 +265,7 @@
             // numComercial
             // 
             this.numComercial.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numComercial.Location = new System.Drawing.Point(270, 304);
+            this.numComercial.Location = new System.Drawing.Point(270, 174);
             this.numComercial.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -277,16 +276,16 @@
             this.numComercial.TabIndex = 119;
             this.numComercial.Visible = false;
             // 
-            // lblComercial
+            // lblEspecial
             // 
-            this.lblComercial.AutoSize = true;
-            this.lblComercial.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComercial.Location = new System.Drawing.Point(267, 283);
-            this.lblComercial.Name = "lblComercial";
-            this.lblComercial.Size = new System.Drawing.Size(81, 17);
-            this.lblComercial.TabIndex = 118;
-            this.lblComercial.Text = "Comercial:";
-            this.lblComercial.Visible = false;
+            this.lblEspecial.AutoSize = true;
+            this.lblEspecial.Font = new System.Drawing.Font("Lucida Sans Unicode", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEspecial.Location = new System.Drawing.Point(267, 283);
+            this.lblEspecial.Name = "lblEspecial";
+            this.lblEspecial.Size = new System.Drawing.Size(67, 17);
+            this.lblEspecial.TabIndex = 118;
+            this.lblEspecial.Text = "Especial:";
+            this.lblEspecial.Visible = false;
             // 
             // numValor
             // 
@@ -370,13 +369,13 @@
             this.Controls.Add(this.numValor);
             this.Controls.Add(this.lblQuantidade);
             this.Controls.Add(this.numComercial);
-            this.Controls.Add(this.lblComercial);
+            this.Controls.Add(this.lblEspecial);
             this.Controls.Add(this.numEscovado);
             this.Controls.Add(this.numEspecial);
             this.Controls.Add(this.numCat);
             this.Controls.Add(this.numExtra);
             this.Controls.Add(this.lblEscovado);
-            this.Controls.Add(this.lblEspecial);
+            this.Controls.Add(this.lblComercial);
             this.Controls.Add(this.lblCat);
             this.Controls.Add(this.lblExtra);
             this.Controls.Add(this.label3);
@@ -417,14 +416,14 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblExtra;
         private System.Windows.Forms.Label lblCat;
-        private System.Windows.Forms.Label lblEspecial;
+        private System.Windows.Forms.Label lblComercial;
         private System.Windows.Forms.Label lblEscovado;
         private System.Windows.Forms.NumericUpDown numExtra;
         private System.Windows.Forms.NumericUpDown numCat;
         private System.Windows.Forms.NumericUpDown numEspecial;
         private System.Windows.Forms.NumericUpDown numEscovado;
         private System.Windows.Forms.NumericUpDown numComercial;
-        private System.Windows.Forms.Label lblComercial;
+        private System.Windows.Forms.Label lblEspecial;
         private System.Windows.Forms.NumericUpDown numValor;
         private System.Windows.Forms.Label lblQuantidade;
         private System.Windows.Forms.Label label4;

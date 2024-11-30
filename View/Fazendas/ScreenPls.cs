@@ -12,11 +12,13 @@ namespace TerraCode.View
     {
         private PLService _plService;
         private FazendaService _fazendaService;
+        private SafraService _safraService;
         private ScreenCriarPL _formCriarPl;
         public ScreenPls()
         {
             InitializeComponent();
             _fazendaService = new FazendaService();
+            _safraService = new SafraService();
             _plService = new PLService();
         }
 
@@ -66,14 +68,17 @@ namespace TerraCode.View
             dt.Columns.Add("Nome do PL", typeof(string));
             dt.Columns.Add("Data do Plantio", typeof(DateTime));
             dt.Columns.Add("Hectares Plantados", typeof(float));
+            dt.Columns.Add("Safra", typeof(string));
             dt.Columns.Add("Observações", typeof(string));
 
             foreach (var pl in pls)
             {
                 var fazenda = resultadoFazendas.Conteudo.FirstOrDefault(f => f.Id == pl.FazendaId);
+                var safraNome = _safraService.RetornaSafraPeloID(pl.IdSafra).Conteudo.Nome;
+
                 if (fazenda != null)
                 {
-                    dt.Rows.Add(fazenda.Nome, pl.Nome, pl.DataDoPlantio, pl.HectarePlantados, pl.Observacoes);
+                    dt.Rows.Add(fazenda.Nome, pl.Nome, pl.DataDoPlantio, pl.HectarePlantados, safraNome, pl.Observacoes);
                 }
             }
 
@@ -90,6 +95,7 @@ namespace TerraCode.View
             dataGridView1.Columns["Nome do PL"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["Data do Plantio"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["Hectares Plantados"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView1.Columns["Safra"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dataGridView1.Columns["Observações"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             dataGridView1.Refresh();

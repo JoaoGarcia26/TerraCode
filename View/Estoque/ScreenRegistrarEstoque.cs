@@ -67,9 +67,9 @@ namespace TerraCode.View.Estoque
             numCat.Visible = true;
             numComercial.Visible = true;
             lblExtra.Visible = true;
-            lblEspecial.Visible = true;
-            lblEscovado.Visible = true;
             lblComercial.Visible = true;
+            lblEscovado.Visible = true;
+            lblEspecial.Visible = true;
             lblCat.Visible = true;
         }
         private void SetVisibleFalse_Primarias()
@@ -80,9 +80,9 @@ namespace TerraCode.View.Estoque
             numCat.Visible = false;
             numComercial.Visible = false;
             lblExtra.Visible = false;
-            lblEspecial.Visible = false;
-            lblEscovado.Visible = false;
             lblComercial.Visible = false;
+            lblEscovado.Visible = false;
+            lblEspecial.Visible = false;
             lblCat.Visible = false;
         }
         private void SetVisibleTrue_Secundarias()
@@ -110,55 +110,44 @@ namespace TerraCode.View.Estoque
 
             if (tipoAlho == "8" || tipoAlho == "7" || tipoAlho == "6" || tipoAlho == "5" || tipoAlho == "4")
             {
-                classificacoesPorTipo[tipoAlho] = new Dictionary<string, int>
-                {
-                    { "Extra", extra },
-                    { "Cat", cat },
-                    { "Comercial", comercial },
-                    { "Especial", especial },
-                    { "Escovado", escovado }
-                };
+                classificacoesPorTipo["Extra"] = new Dictionary<string, int> { { tipoAlho, extra } };
+                classificacoesPorTipo["Cat"] = new Dictionary<string, int> { { tipoAlho, cat } };
+                classificacoesPorTipo["Comercial"] = new Dictionary<string, int> { { tipoAlho, comercial } };
+                classificacoesPorTipo["Especial"] = new Dictionary<string, int> { { tipoAlho, especial } };
+                classificacoesPorTipo["Escovado"] = new Dictionary<string, int> { { tipoAlho, escovado } };
             }
             else if (tipoAlho == "3")
             {
-                classificacoesPorTipo["3"] = new Dictionary<string, int> 
-                { 
-                    { "numQuantidade", quantidade } 
-                };
+                classificacoesPorTipo["Escovado"] = new Dictionary<string, int> { { "3", quantidade } };
             }
             else if (tipoAlho == "Borrado 20kg")
             {
-                classificacoesPorTipo["Borrado20kg"] = new Dictionary<string, int>
-                {
-                    { "numQuantidade", quantidade }
-                };
+                classificacoesPorTipo["Borrado"] = new Dictionary<string, int> { { "20kg", quantidade } };
             }
             else if (tipoAlho == "2/3")
             {
-                classificacoesPorTipo["Escovado2_3"] = new Dictionary<string, int>
-                {
-                    { "numQuantidade", quantidade }
-                };
+                classificacoesPorTipo["Escovado"] = new Dictionary<string, int> { { "2/3", quantidade } };
             }
             else if (tipoAlho == "Industrial 20kg")
             {
-                classificacoesPorTipo["Industrial20kg"] = new Dictionary<string, int>
-                {
-                    { "numQuantidade", quantidade }
-                };
+                classificacoesPorTipo["Industrial"] = new Dictionary<string, int> { { "20kg", quantidade } };
             }
             else if (tipoAlho == "Dente 20kg")
             {
-                classificacoesPorTipo["Dente20kg"] = new Dictionary<string, int>
-                {
-                    { "numQuantidade", quantidade }
-                };
+                classificacoesPorTipo["Dente"] = new Dictionary<string, int> { { "20kg", quantidade } };
             }
 
             var fazendaSelecionada = _fazendaService.RetornaFazendaPeloNome(comboFazenda.SelectedItem.ToString());
             var plSelecionado = _plService.RetornaPlPeloNomeeFazenda(comboPL.SelectedItem.ToString(), fazendaSelecionada.Conteudo.Nome);
 
-            var resultado = _estoqueService.CriarEstoque(dataEntrada.Value, comboEvento.SelectedItem.ToString(), txtNumDoc.Text, fazendaSelecionada.Conteudo.Id, plSelecionado.Conteudo.Id, classificacoesPorTipo);
+            var resultado = _estoqueService.CriarEstoque(
+                dataEntrada.Value,
+                comboEvento.SelectedItem.ToString(),
+                txtNumDoc.Text,
+                fazendaSelecionada.Conteudo.Id,
+                plSelecionado.Conteudo.Id,
+                classificacoesPorTipo
+            );
 
             if (resultado.Sucesso)
             {
